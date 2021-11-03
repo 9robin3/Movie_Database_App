@@ -12,12 +12,12 @@ namespace Movie_Database_App.Models
         {
 
         }
-        public Movie(string title, float runningTime, string description)
-        {
-            Title = title;
-            RunningTime = runningTime;
-            Description = description;
-        }
+        //public Movie(string title, float runningTime, string description)
+        //{
+        //    Title = title;
+        //    RunningTime = runningTime;
+        //    Description = description;
+        //}
         
         [Key]
         public int MovieID { get; set; }
@@ -28,8 +28,8 @@ namespace Movie_Database_App.Models
         public float RunningTime { get; set; }
         [Required]
         public string Description { get; set; }
-        //public string PosterUrl { get; set; }
-        //public string TrailerUrl { get; set; }
-        //public DateTime DatePublished { get; set; }
+        public string PosterUrl { get; set; }
+        public string TrailerUrl { get; set; }
+        public DateTime DatePublished { get; set; }
     }
 }
