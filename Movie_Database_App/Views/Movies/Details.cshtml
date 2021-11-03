@@ -1,18 +1,19 @@
 ﻿@model Movie_Database_App.Models.Movie
 
 @{
-    ViewData["Title"] = "Details";
+    //ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+@*<h1>Details</h1>*@
 
 <div>
-    <h4>Movie</h4>
+    @*<h4>@Html.DisplayNameFor(model => model.Title)</h4>*@
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            @Html.DisplayFor(model => model.Title)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
@@ -31,7 +32,9 @@
         </dd>
     </dl>
 </div>
+
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a> |*@
     <a asp-action="Index">Back to List</a>
 </div>

@@ -22,12 +22,15 @@ namespace Movie_Database_App.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Dummy hardcoded data
+            //Replace with API fetched JSON/XML Data
+            
             //base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Movie>().HasData(
-                    //new Movie { Title = "Test 1", RunningTime = 200, Description = "Desc" }
-                    new Movie("Test 1", 200, "This is a test description"),
-                    new Movie("Test 2", 75, "Another description"),
-                    new Movie("Test 3", 120, "Action movie 2019")
+                    new Movie {  MovieID = 1, Title = "test1", RunningTime = 200, Description = "desc"},
+                    new Movie { MovieID = 2, Title = "test2", RunningTime = 70, Description = "desc2" },
+                    new Movie { MovieID = 3, Title = "test3", RunningTime = 120, Description = "desc3" }
+                   
                 );
         }
        

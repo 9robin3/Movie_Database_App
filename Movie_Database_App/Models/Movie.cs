@@ -8,7 +8,10 @@ namespace Movie_Database_App.Models
 {
     public class Movie
     {
+        public Movie()
+        {
 
+        }
         public Movie(string title, float runningTime, string description)
         {
             Title = title;
