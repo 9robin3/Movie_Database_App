@@ -12,7 +12,7 @@
     </p>*@
 @*<p asp-action="Create">test</p>*@
 <table class="table">
-    <thead>
+    <!--<thead>
         <tr>
             <th>
 
@@ -22,38 +22,46 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RunningTime)
-            </th>
+            </th>-->
             @*<th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>*@
-            <th></th>
+            <!--<th></th>
         </tr>
-    </thead>
+    </thead>-->
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <td>
+                <div>
                     @*<img src ="@Html.DisplayFor(modelItem => item.PosterUrl)" width="200" height="200" />*@
-                    <img src="@item.PosterUrl" width="150" height="200" />
-                </td>
-                <td>
+                    <a asp-action="Details" asp-route-id="@item.MovieID"><img src="@item.PosterUrl" width="150" height="200" /></a>
+                    @*<br />*@
+                    @*<td>
+                        <a asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a>
+                    </td>*@
+                    @*<br/>*@
+                @*</div>*@
+                @*<div>*@
+                <div>
                     @*@Html.DisplayFor(modelItem => item.Title)*@
-                    <a asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a> |
-                </td>
-                <td>
+                    <a asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a>
+
+                    @*</div>*@
+                    @*<tr>*@
                     @Html.DisplayFor(modelItem => item.RunningTime)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
-                @*<td>
-                    <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> |
-                    
-                    <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
-                </td>*@
-            </tr>
+                </div>
+            </div>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>*@
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> |
+
+                <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
+            </td>*@
+         </td>
         }
     </tbody>
 </table>

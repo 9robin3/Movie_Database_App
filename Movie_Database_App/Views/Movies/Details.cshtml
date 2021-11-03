@@ -13,12 +13,12 @@
     <hr />
     <dl class="row">
         <!--<dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Title)-->
+    @Html.DisplayNameFor(model => model.Title)-->
         @*@Html.DisplayFor(model => model.Title)*@
         <!--</dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>-->
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Title)
+    </dd>-->
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RunningTime)
         </dt>
@@ -30,6 +30,19 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
+            <br />
+            <br />
+            <br />
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.TrailerUrl)*@
+            <a href="@Html.DisplayFor(model => model.TrailerUrl)">Trailer</a>
+        </dt>
+        @*<dt class="col-sm-10">
+            <a href="@Html.DisplayFor(model => model.TrailerUrl)" >Trailer</a>
+        </dt>*@
+        <dd class="col-sm-10">
+
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DatePublished)
