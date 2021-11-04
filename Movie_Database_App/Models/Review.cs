@@ -7,21 +7,48 @@ using System.Threading.Tasks;
 
 namespace Movie_Database_App.Models
 {
+    
+
     public class Review
     {
+
         public Review()
         {
 
         }
+      
 
         [Key]
         public int ReviewID { get; set; }
         //FK:
-        //[ForeignKey("Movie")]
-        //public Movie Movie { get; set; }
+        [ForeignKey("MovieID")]
+        [NotMapped]
+        public Movie Movie { get; set; }
+        [Required]
         public string ReviewTitle { get; set; }
-        public int Rating { get; set; }
+        [Required]
+        public ERating Rating { get; set; }
+        public enum ERating
+        {
+            One, Two, Three, Four, Five
+        }
+
+        //public ERating Rating
+        //{
+        //    get
+        //    {
+        //        return rating;
+        //    }
+        //    set
+        //    {
+        //        rating = value;
+        //    }
+        //}
+
+        [Required]
         public string Comment { get; set; }
+        [Required]
         public DateTime DatePosted { get; set; }
+
     }
 }

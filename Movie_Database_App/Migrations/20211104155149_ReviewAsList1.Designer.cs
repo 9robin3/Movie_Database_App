@@ -10,8 +10,8 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211104094809_ReviewsTableAdded")]
-    partial class ReviewsTableAdded
+    [Migration("20211104155149_ReviewAsList1")]
+    partial class ReviewAsList1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,20 +155,39 @@ namespace Movie_Database_App.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("MovieID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
 
+                    b.HasIndex("MovieID");
+
                     b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
+                {
+                    b.HasOne("Movie_Database_App.Models.Movie", null)
+                        .WithMany("ReviewsList")
+                        .HasForeignKey("MovieID");
+                });
+
+            modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
+                {
+                    b.Navigation("ReviewsList");
                 });
 #pragma warning restore 612, 618
         }

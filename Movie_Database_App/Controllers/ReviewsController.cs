@@ -58,10 +58,12 @@ namespace Movie_Database_App.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(review);
                 await _context.SaveChangesAsync();
+                //return View("ParentView", review);
                 //return View(review);
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction(nameof(Index));
             }
             return View(review);
         }

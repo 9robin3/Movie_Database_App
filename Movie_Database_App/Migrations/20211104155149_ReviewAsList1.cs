@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Movie_Database_App.Migrations
 {
-    public partial class MoreStartDummyData1 : Migration
+    public partial class ReviewAsList1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,6 +26,29 @@ namespace Movie_Database_App.Migrations
                     table.PrimaryKey("PK_Movies", x => x.MovieID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Review",
+                columns: table => new
+                {
+                    ReviewID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReviewTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MovieID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Review", x => x.ReviewID);
+                    table.ForeignKey(
+                        name: "FK_Review_Movies_MovieID",
+                        column: x => x.MovieID,
+                        principalTable: "Movies",
+                        principalColumn: "MovieID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "MovieID", "DatePublished", "Description", "Genre", "PosterUrl", "RunningTime", "Title", "TrailerUrl" },
@@ -40,10 +63,18 @@ namespace Movie_Database_App.Migrations
                     { 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017), "desc7", "Scifi", "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", 70f, "test7", "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment" },
                     { 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017), "desc8", "Adventure", "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", 320f, "test8", "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Review_MovieID",
+                table: "Review",
+                column: "MovieID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Review");
+
             migrationBuilder.DropTable(
                 name: "Movies");
         }

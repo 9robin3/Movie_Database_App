@@ -40,9 +40,6 @@ namespace Movie_Database_App.Migrations
                     b.Property<string>("PosterUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReviewID")
-                        .HasColumnType("int");
-
                     b.Property<float>("RunningTime")
                         .HasColumnType("real");
 
@@ -54,8 +51,6 @@ namespace Movie_Database_App.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MovieID");
-
-                    b.HasIndex("ReviewID");
 
                     b.ToTable("Movies");
 
@@ -158,29 +153,39 @@ namespace Movie_Database_App.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("MovieID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReviewID");
 
+                    b.HasIndex("MovieID");
+
                     b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
+                {
+                    b.HasOne("Movie_Database_App.Models.Movie", null)
+                        .WithMany("ReviewsList")
+                        .HasForeignKey("MovieID");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
                 {
-                    b.HasOne("Movie_Database_App.Models.Review", "Review")
-                        .WithMany()
-                        .HasForeignKey("ReviewID");
-
-                    b.Navigation("Review");
+                    b.Navigation("ReviewsList");
                 });
 #pragma warning restore 612, 618
         }
