@@ -33,5 +33,6 @@ namespace Movie_Database_App.Models
         public string PosterUrl { get; set; }
         public string TrailerUrl { get; set; }
         public DateTime DatePublished { get; set; }
+        public Review Review { get; set; }
     }
 }

@@ -38,6 +38,8 @@ namespace Movie_Database_App.Data
 
                 );
         }
+
+        public DbSet<Movie_Database_App.Models.Review> Review { get; set; }
        
     }
 }
