@@ -33,6 +33,10 @@ namespace Movie_Database_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PosterUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -56,6 +60,7 @@ namespace Movie_Database_App.Migrations
                             MovieID = 1,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
                             Description = "desc",
+                            Genre = "Action",
                             PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
                             RunningTime = 200f,
                             Title = "test1",
@@ -66,6 +71,7 @@ namespace Movie_Database_App.Migrations
                             MovieID = 2,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc2",
+                            Genre = "Scifi",
                             PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
                             RunningTime = 70f,
                             Title = "test2",
@@ -76,9 +82,65 @@ namespace Movie_Database_App.Migrations
                             MovieID = 3,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2005),
                             Description = "desc3",
+                            Genre = "Horror",
                             PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
                             RunningTime = 120f,
                             Title = "test3",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 4,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
+                            Description = "desc4",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test4",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 5,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            Description = "desc5",
+                            Genre = "Adventure",
+                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
+                            RunningTime = 70f,
+                            Title = "test5",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 6,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
+                            Description = "desc6",
+                            Genre = "Action",
+                            PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
+                            RunningTime = 200f,
+                            Title = "test6",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 7,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            Description = "desc7",
+                            Genre = "Scifi",
+                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
+                            RunningTime = 70f,
+                            Title = "test7",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 8,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            Description = "desc8",
+                            Genre = "Adventure",
+                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
+                            RunningTime = 320f,
+                            Title = "test8",
                             TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         });
                 });

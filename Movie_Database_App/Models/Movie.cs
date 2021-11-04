@@ -12,6 +12,7 @@ namespace Movie_Database_App.Models
         {
 
         }
+
         //public Movie(string title, float runningTime, string description)
         //{
         //    Title = title;
@@ -23,7 +24,8 @@ namespace Movie_Database_App.Models
         public int MovieID { get; set; }
         [Required]
         public string Title { get; set; }
-        //public enum Genre { get; set; }
+        [Required]
+        public string Genre { get; set; }
         [Required]
         public float RunningTime { get; set; }
         [Required]
