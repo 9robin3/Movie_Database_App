@@ -11,11 +11,15 @@ namespace Movie_Database_App.Models
 
     public class Review
     {
-
         public Review()
         {
 
         }
+        
+        //public Review(Movie movie)
+        //{
+        //    MovieID = movie;
+        //}
       
 
         [Key]
@@ -23,7 +27,7 @@ namespace Movie_Database_App.Models
         //FK:
         [ForeignKey("MovieID")]
         [NotMapped]
-        public Movie Movie { get; set; }
+        public Movie MovieID { get; set; }
         [Required]
         public string ReviewTitle { get; set; }
         [Required]
@@ -32,18 +36,6 @@ namespace Movie_Database_App.Models
         {
             One, Two, Three, Four, Five
         }
-
-        //public ERating Rating
-        //{
-        //    get
-        //    {
-        //        return rating;
-        //    }
-        //    set
-        //    {
-        //        rating = value;
-        //    }
-        //}
 
         [Required]
         public string Comment { get; set; }

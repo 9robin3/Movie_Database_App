@@ -62,20 +62,47 @@
 <hr />
 
 @*<div>
-        @Html.Partial("~/Views/Reviews/Create.cshtml", new Review())
+            @Html.Partial("~/Views/Reviews/Create.cshtml", new Review())
     </div>*@
 
 <div>
-    @*@Html.Partial("~/Views/Reviews/Index.cshtml", new List<Review>())*@
-    @foreach(Review review in Model.ReviewsList)
-    {
-
-    }
+    @Html.Partial("~/Views/Reviews/Create.cshtml", new Review())
 </div>
 
+@*<input type="submit" value="Create" class="btn btn-primary" asp-action="CreateReview" />*@
+
+<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>
+<a asp-action="Index">Back to List</a>
+
+@*////Pseudo code to run on button click*@
+
+@*@AddReview()
+        {
+
+            //@Model means that THIS model (Movie) shall be sent to the review, and the Movie prop set to it
+
+            Review rev = new Review()
+            rev.Movie = @Model
+            reviewsList.Add(rev);
+
+            //Create in review controller?
+            ---Review.Create() ?
 
 
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>*@
-    <a asp-action="Index">Back to List</a>
-</div>
+    }*@
+
+@*////Pseudo code to show all reviews of this movie
+
+@foreach (Review rev in Model.ReviewsList)
+{
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(rev => rev.Title)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Comment)
+    </dd>
+}*@
+
+
+
+

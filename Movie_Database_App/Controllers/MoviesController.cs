@@ -25,6 +25,11 @@ namespace Movie_Database_App.Controllers
             return View(await _context.Movies.ToListAsync());
         }
 
+        public async Task<IActionResult> ListReviews()
+        {
+            return View(await _context.Reviews.ToListAsync());
+        }
+
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -64,6 +69,32 @@ namespace Movie_Database_App.Controllers
             }
             return View(movie);
         }
+
+        public async Task<IActionResult> Search(string search)
+        {
+            //if (String.IsNullOrEmpty(search))
+            //{
+            //    return PartialView("_Search", await _context.Movies.ToListAsync());
+            //}
+            //else
+            //{
+            if (search.Count() == 0)
+            {
+                return PartialView("NoSearchResult");
+            }
+
+            ////Liknande logik för review listan??? Review where movie ID = this?
+            return View("_Search", await _context.Movies.
+                    Where(mov => mov.Title.Contains(search)).ToListAsync());
+
+        }
+
+        //public ActionResult CreateReview(Movie movie)
+        //{
+        //    Review rev = new Review(movie);
+        //   // return View(movie);
+        //    return PartialView("~/Views/Reviews/Create.cshtml", rev);
+        //}
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)

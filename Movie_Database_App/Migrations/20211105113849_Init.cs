@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Movie_Database_App.Migrations
 {
-    public partial class ReviewAsList1 : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace Movie_Database_App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Review",
+                name: "Reviews",
                 columns: table => new
                 {
                     ReviewID = table.Column<int>(type: "int", nullable: false)
@@ -36,14 +36,14 @@ namespace Movie_Database_App.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DatePosted = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MovieID = table.Column<int>(type: "int", nullable: true)
+                    MovieID1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Review", x => x.ReviewID);
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewID);
                     table.ForeignKey(
-                        name: "FK_Review_Movies_MovieID",
-                        column: x => x.MovieID,
+                        name: "FK_Reviews_Movies_MovieID1",
+                        column: x => x.MovieID1,
                         principalTable: "Movies",
                         principalColumn: "MovieID",
                         onDelete: ReferentialAction.Restrict);
@@ -65,15 +65,15 @@ namespace Movie_Database_App.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_MovieID",
-                table: "Review",
-                column: "MovieID");
+                name: "IX_Reviews_MovieID1",
+                table: "Reviews",
+                column: "MovieID1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Review");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Movies");

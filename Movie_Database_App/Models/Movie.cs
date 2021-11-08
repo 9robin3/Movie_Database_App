@@ -12,6 +12,11 @@ namespace Movie_Database_App.Models
         {
 
         }
+        
+        public Movie(int ID)
+        {
+            MovieID = ID;
+        }
 
         //public Movie(string title, float runningTime, string description)
         //{

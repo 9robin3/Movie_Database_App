@@ -19,6 +19,7 @@ namespace Movie_Database_App.Data
         }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,7 +40,7 @@ namespace Movie_Database_App.Data
                 );
         }
 
-        public DbSet<Movie_Database_App.Models.Review> Review { get; set; }
+       
        
     }
 }

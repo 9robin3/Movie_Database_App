@@ -159,7 +159,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieID")
+                    b.Property<int?>("MovieID1")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -171,16 +171,16 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("MovieID");
+                    b.HasIndex("MovieID1");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
                 {
                     b.HasOne("Movie_Database_App.Models.Movie", null)
                         .WithMany("ReviewsList")
-                        .HasForeignKey("MovieID");
+                        .HasForeignKey("MovieID1");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
