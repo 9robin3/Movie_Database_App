@@ -10,7 +10,7 @@ namespace Movie_Database_App.Models
     {
         public Movie()
         {
-
+            ReviewsList = new List<Review>();
         }
         
         public Movie(int ID)

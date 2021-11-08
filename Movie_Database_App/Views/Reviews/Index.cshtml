@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+    //Layout = "~/Views/Shared/_PartialLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Reviews</h1>
@@ -15,6 +16,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ReviewTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rating)
@@ -35,6 +39,9 @@
                 @Html.DisplayFor(modelItem => item.ReviewTitle)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MovieID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
@@ -44,8 +51,8 @@
                 @Html.DisplayFor(modelItem => item.DatePosted)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a> 
-                @*<a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>*@ 
+                <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
                 <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
             </td>
         </tr>

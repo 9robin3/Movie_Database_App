@@ -44,10 +44,11 @@ namespace Movie_Database_App.Controllers
         }
 
         // GET: Reviews/Create
-        public IActionResult Create()
+        public IActionResult Create(Movie movie)
         {
-            
-            return View();
+            Review rev = new Review(movie);
+            movie.ReviewsList.Add(rev);
+            return View(rev);
         }
 
         // POST: Reviews/Create
