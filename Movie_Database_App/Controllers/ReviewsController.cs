@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AngleSharp.Dom;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,11 +45,12 @@ namespace Movie_Database_App.Controllers
         }
 
         // GET: Reviews/Create
-        public IActionResult Create(Movie movie)
+        public IActionResult Create(Movie mov)
         {
-            Review rev = new Review(movie);
-            movie.ReviewsList.Add(rev);
-            return View(rev);
+            //movie mov = _context.movies.find(id);
+            Review rev = new Review(mov);
+            mov.ReviewsList.Add(rev);
+            return View();
         }
 
         // POST: Reviews/Create
@@ -60,6 +62,7 @@ namespace Movie_Database_App.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 //review.MovieID = movie;
                 _context.Add(review);
                 await _context.SaveChangesAsync();

@@ -157,3 +157,4 @@ D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\M
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Razor\Views\Shared\_PartialLayout.cshtml.g.cs
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Razor\Views\Movies\_Search.cshtml.g.cs
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Razor\Views\Shared\NoSearchResult.cshtml.g.cs
+D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\bin\Debug\net5.0\AngleSharp.dll
