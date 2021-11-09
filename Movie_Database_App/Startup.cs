@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,14 @@ namespace Movie_Database_App
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+
+            //services.AddDefaultIdentity<IdentityUser>()
+            //.AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddIdentity<AppUser, AppRole>(cfg => {
+                cfg.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<AppDbContext>();
+            //services.AddTransient<Seeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

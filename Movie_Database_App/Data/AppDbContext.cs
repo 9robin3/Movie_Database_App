@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Movie_Database_App.Models;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Movie_Database_App.Data
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public AppDbContext()
         {
@@ -24,9 +25,14 @@ namespace Movie_Database_App.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
             //Dummy hardcoded data
             //Replace with API fetched JSON/XML Data
-            
+            //modelBuilder.Entity<Project>().HasKey(m => m.ProjectPath);
+            //modelBuilder.Entity<Target>().HasKey(m => m.Guid);
+            //base.OnModelCreating(builder);
+
             //base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Movie>().HasData(
                     new Movie {  MovieID = 1, Title = "test1", RunningTime = 200, Description = "desc",Genre = "Action" , PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2021-01-01) },
