@@ -15,6 +15,9 @@ namespace Movie_Database_App.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
+
+                //services.AddDefaultIdentity<AppUser>()
+                //    .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
             });
         }
     }

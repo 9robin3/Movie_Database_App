@@ -39,6 +39,9 @@ namespace Movie_Database_App
                 cfg.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<AppDbContext>();
             //services.AddTransient<Seeder>();
+
+            //services.AddDefaultIdentity<AppUser>()
+            //        .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

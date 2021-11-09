@@ -1,4 +1,8 @@
-@inject SignInManager<IdentityUser> SignInManager
+@using Movie_Database_App.Data
+@using Movie_Database_App.Models
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<AppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
