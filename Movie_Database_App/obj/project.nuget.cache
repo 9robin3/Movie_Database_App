@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fH7RGHlYwxdl+5be6HRCx0h7nGaBdl7b3AGPVERHoP+p9aAl9feQeBC03uqhDmPFldBd20U8FxQBKTGm4gGlMQ==",
+  "dgSpecHash": "WZ/kIB7zd4rYuSr9NurbGofAgTfA+sERjIPUq2892S+2NwV1LJExcpnRXLXOH89dGpfSVQ0lbvR36a6qSzXnkg==",
   "success": true,
   "projectFilePath": "D:\\Bibliotek\\Dokument\\Development\\Portfolio\\Web Development\\Movie_Database_App\\Movie_Database_App\\Movie_Database_App.csproj",
   "expectedPackageFiles": [
@@ -46,10 +46,10 @@
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.11\\microsoft.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.11\\microsoft.entityframeworkcore.abstractions.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.11\\microsoft.entityframeworkcore.analyzers.5.0.11.nupkg.sha512",
-    "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.0\\microsoft.entityframeworkcore.design.5.0.0.nupkg.sha512",
+    "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.11\\microsoft.entityframeworkcore.design.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.11\\microsoft.entityframeworkcore.relational.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.11\\microsoft.entityframeworkcore.sqlserver.5.0.11.nupkg.sha512",
-    "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.0\\microsoft.entityframeworkcore.tools.5.0.0.nupkg.sha512",
+    "C:\\Users\\andbl\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.11\\microsoft.entityframeworkcore.tools.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

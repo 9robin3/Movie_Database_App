@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Database_App.Data;
 
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211110095808_ReviewTableNameMovieChange")]
+    partial class ReviewTableNameMovieChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -449,7 +451,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieID1")
+                    b.Property<int?>("MovieID")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -461,7 +463,7 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("MovieID1");
+                    b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
                 });
@@ -519,11 +521,9 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
                 {
-                    b.HasOne("Movie_Database_App.Models.Movie", "Movie")
+                    b.HasOne("Movie_Database_App.Models.Movie", null)
                         .WithMany("ReviewsList")
-                        .HasForeignKey("MovieID1");
-
-                    b.Navigation("Movie");
+                        .HasForeignKey("MovieID");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>

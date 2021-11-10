@@ -69,7 +69,7 @@
 
 <div>
     @*@Html.Partial("~/Views/Reviews/Create.cshtml", new Review())*@
-    <a href="@Url.Action("Create", "Reviews", new { id = Model  })" class="btn btn-warning" role="button">Create test</a>
+    <a href="@Url.Action("Create", "Reviews", new { id = Model.MovieID  })" class="btn btn-warning" role="button">Create test</a>
     @*<a>@Url.Action("Create", "Reviews", new { movie = id })</a>*@
 </div>
 

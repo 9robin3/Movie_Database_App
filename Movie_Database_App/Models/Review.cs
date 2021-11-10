@@ -16,9 +16,10 @@ namespace Movie_Database_App.Models
 
         }
 
-        public Review(Movie movie)
+        public Review(int id, Movie mov)
         {
-            MovieID = movie;
+            MovieID = id;
+            Movie = mov;
         }
 
 
@@ -27,7 +28,8 @@ namespace Movie_Database_App.Models
         //FK:
         [ForeignKey("MovieID")]
         [NotMapped]
-        public Movie MovieID { get; set; }
+        public int MovieID { get; set; }
+        public Movie Movie { get; set; }
         [Required]
         public string ReviewTitle { get; set; }
         [Required]
