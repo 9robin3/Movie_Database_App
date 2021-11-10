@@ -10,23 +10,23 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211109122900_IdentityBase")]
-    partial class IdentityBase
+    [Migration("20211110122307_IDTableNameChanges2")]
+    partial class IDTableNameChanges2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11");
+                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -50,7 +50,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -174,9 +174,6 @@ namespace Movie_Database_App.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -231,7 +228,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DatePublished")
                         .HasColumnType("datetime2");
@@ -445,7 +442,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<int>("ReviewID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -524,9 +521,11 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
                 {
-                    b.HasOne("Movie_Database_App.Models.Movie", null)
+                    b.HasOne("Movie_Database_App.Models.Movie", "Movie")
                         .WithMany("ReviewsList")
                         .HasForeignKey("MovieID1");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>

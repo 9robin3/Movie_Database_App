@@ -10,8 +10,8 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211109124200_IdentityTweaks")]
-    partial class IdentityTweaks
+    [Migration("20211110121357_IDTableNameChanges")]
+    partial class IDTableNameChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,7 +225,7 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
                 {
-                    b.Property<int>("MovieID")
+                    b.Property<int>("Movieid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -254,14 +254,14 @@ namespace Movie_Database_App.Migrations
                     b.Property<string>("TrailerUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MovieID");
+                    b.HasKey("Movieid");
 
                     b.ToTable("Movies");
 
                     b.HasData(
                         new
                         {
-                            MovieID = 1,
+                            Movieid = 1,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
                             Description = "desc",
                             Genre = "Action",
@@ -272,7 +272,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 2,
+                            Movieid = 2,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc2",
                             Genre = "Scifi",
@@ -283,7 +283,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 3,
+                            Movieid = 3,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2005),
                             Description = "desc3",
                             Genre = "Horror",
@@ -294,7 +294,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 4,
+                            Movieid = 4,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
                             Description = "desc4",
                             Genre = "Horror",
@@ -305,7 +305,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 5,
+                            Movieid = 5,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc5",
                             Genre = "Adventure",
@@ -316,7 +316,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 6,
+                            Movieid = 6,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
                             Description = "desc6",
                             Genre = "Action",
@@ -327,7 +327,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 7,
+                            Movieid = 7,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc7",
                             Genre = "Scifi",
@@ -338,7 +338,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 8,
+                            Movieid = 8,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -349,7 +349,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 9,
+                            Movieid = 9,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -360,7 +360,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 10,
+                            Movieid = 10,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -371,7 +371,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 11,
+                            Movieid = 11,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -382,7 +382,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 12,
+                            Movieid = 12,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Scifi",
@@ -393,7 +393,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 13,
+                            Movieid = 13,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Horror",
@@ -404,7 +404,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 14,
+                            Movieid = 14,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -415,7 +415,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 15,
+                            Movieid = 15,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Adventure",
@@ -426,7 +426,7 @@ namespace Movie_Database_App.Migrations
                         },
                         new
                         {
-                            MovieID = 16,
+                            Movieid = 16,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
                             Description = "desc8",
                             Genre = "Comedy",
@@ -451,7 +451,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieID1")
+                    b.Property<int?>("Movieid1")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -463,7 +463,7 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("MovieID1");
+                    b.HasIndex("Movieid1");
 
                     b.ToTable("Reviews");
                 });
@@ -521,9 +521,11 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
                 {
-                    b.HasOne("Movie_Database_App.Models.Movie", null)
+                    b.HasOne("Movie_Database_App.Models.Movie", "Movie")
                         .WithMany("ReviewsList")
-                        .HasForeignKey("MovieID1");
+                        .HasForeignKey("Movieid1");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>

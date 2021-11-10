@@ -10,8 +10,8 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211110095808_ReviewTableNameMovieChange")]
-    partial class ReviewTableNameMovieChange
+    [Migration("20211110104940_RecreateDB2")]
+    partial class RecreateDB2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -451,7 +451,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieID")
+                    b.Property<int?>("MovieID1")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -463,7 +463,7 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("MovieID");
+                    b.HasIndex("MovieID1");
 
                     b.ToTable("Reviews");
                 });
@@ -521,9 +521,11 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
                 {
-                    b.HasOne("Movie_Database_App.Models.Movie", null)
+                    b.HasOne("Movie_Database_App.Models.Movie", "Movie")
                         .WithMany("ReviewsList")
-                        .HasForeignKey("MovieID");
+                        .HasForeignKey("MovieID1");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>

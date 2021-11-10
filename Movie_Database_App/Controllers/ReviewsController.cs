@@ -12,17 +12,17 @@ namespace Movie_Database_App.Controllers
 {
     public class ReviewsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _dbContext;
 
         public ReviewsController(AppDbContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Reviews.ToListAsync());
+            return View(await _dbContext.Reviews.ToListAsync());
         }
 
         // GET: Reviews/Details/5
@@ -33,7 +33,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Reviews
+            var review = await _dbContext.Reviews
                 .FirstOrDefaultAsync(m => m.ReviewID == id);
             if (review == null)
             {
@@ -46,11 +46,10 @@ namespace Movie_Database_App.Controllers
         // GET: Reviews/Create
         public IActionResult Create(int id)
         {
-            //movie mov = _context.movies.find(id);
-            //Review rev = new Review(mov);
-            //mov.ReviewsList.Add(rev);
-            //Movie mov = new Movie(id);
-            return View(id);
+            Review rev = new Review();
+            rev.MovieID = id;
+            //var rev = _dbContext.Reviews.FindAsync(id);
+            return View(rev);
         }
 
         // POST: Reviews/Create
@@ -58,16 +57,13 @@ namespace Movie_Database_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewID,ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Create([Bind("ReviewID, MovieID, ReviewTitle,Rating,Comment,DatePosted")] Review review)
         {
             if (ModelState.IsValid)
             {
-                
-                //review.MovieID = movie;
-                _context.Add(review);
-                await _context.SaveChangesAsync();
-                //return View("ParentView", review);
-                //return View(review);
+                //Review rev = new Review(id);
+                _dbContext.Add(review);
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(review);
@@ -81,7 +77,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Reviews.FindAsync(id);
+            var review = await _dbContext.Reviews.FindAsync(id);
             if (review == null)
             {
                 return NotFound();
@@ -105,8 +101,8 @@ namespace Movie_Database_App.Controllers
             {
                 try
                 {
-                    _context.Update(review);
-                    await _context.SaveChangesAsync();
+                    _dbContext.Update(review);
+                    await _dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -132,7 +128,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Reviews
+            var review = await _dbContext.Reviews
                 .FirstOrDefaultAsync(m => m.ReviewID == id);
             if (review == null)
             {
@@ -147,15 +143,15 @@ namespace Movie_Database_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var review = await _context.Reviews.FindAsync(id);
-            _context.Reviews.Remove(review);
-            await _context.SaveChangesAsync();
+            var review = await _dbContext.Reviews.FindAsync(id);
+            _dbContext.Reviews.Remove(review);
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReviewExists(int id)
         {
-            return _context.Reviews.Any(e => e.ReviewID == id);
+            return _dbContext.Reviews.Any(e => e.ReviewID == id);
         }
     }
 }

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Movie_Database_App.Models
 {
-    
+
 
     public class Review
     {
@@ -16,12 +13,11 @@ namespace Movie_Database_App.Models
 
         }
 
-        public Review(int id, Movie mov)
+        public Review(int id)
         {
             MovieID = id;
-            Movie = mov;
+            //Movie = mov;
         }
-
 
         [Key]
         public int ReviewID { get; set; }
