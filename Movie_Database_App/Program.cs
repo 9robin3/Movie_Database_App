@@ -17,12 +17,6 @@ namespace Movie_Database_App
 
         public static void Main(string[] args)
         {
-            //Test data 
-            //_dbContext.Movies.AddAsync(new Movie("Test1", 200, "desc"));
-            //_dbContext.Movies.AddAsync(new Movie("Test2", 70, "desc2"));
-            //_dbContext.Movies.AddAsync(new Movie("Test3", 120, "desc3"));
-
-            //_dbContext.SaveChangesAsync();
 
             CreateHostBuilder(args).Build().Run();
         }

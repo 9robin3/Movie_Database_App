@@ -22,6 +22,12 @@ namespace Movie_Database_App.Data
         }
 
         public DbSet<Movie> Movies { get; set; }
+
+        internal object Entity<T>()
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,8 +37,7 @@ namespace Movie_Database_App.Data
             //Replace with API fetched JSON/XML Data
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Movie>().HasKey(m => m.MovieID);
-            modelBuilder.Entity<Review>().HasKey(r => r.ReviewID);
+            modelBuilder.Entity<Movie>().HasIndex(m => m.MovieID);
 
             modelBuilder.Entity<Movie>().HasData(
 
@@ -43,11 +48,11 @@ namespace Movie_Database_App.Data
 
                     );
 
-            modelBuilder.Entity<Review>().HasData(
+            //modelBuilder.Entity<Review>().HasData(
 
-               new Review { ReviewID = 1, MovieID = 1, ReviewTitle = "A", Rating = Review.ERating.One, Comment = "A", DatePosted = new DateTime(2019 - 01 - 01) }
+            //   new Review { ReviewID = 1, MovieID = 1, ReviewTitle = "A", Rating = Review.ERating.One, Comment = "A", DatePosted = new DateTime(2019 - 01 - 01) }
 
-               );
+            //   );
 
         }
 

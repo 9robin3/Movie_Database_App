@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Movie_Database_App.Models
 {
@@ -13,10 +14,11 @@ namespace Movie_Database_App.Models
             ReviewsList = new List<Review>();
         }
 
-        //public Movie(int Id)
-        //{
-        //    MovieID = Id;
-        //}
+        public Movie(int Id)
+        {
+            MovieID = Id;
+            ReviewsList = new List<Review>();
+        }
 
         //public Movie(string title, float runningTime, string description)
         //{
@@ -26,6 +28,7 @@ namespace Movie_Database_App.Models
         //}
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieID { get; set; }
         [Required]
         public string Title { get; set; }

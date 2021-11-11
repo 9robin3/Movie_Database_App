@@ -254,6 +254,8 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("MovieID");
 
+                    b.HasIndex("MovieID");
+
                     b.ToTable("Movies");
 
                     b.HasData(
@@ -332,17 +334,6 @@ namespace Movie_Database_App.Migrations
                     b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
-
-                    b.HasData(
-                        new
-                        {
-                            ReviewID = 1,
-                            Comment = "A",
-                            DatePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            MovieID = 1,
-                            Rating = 0,
-                            ReviewTitle = "A"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

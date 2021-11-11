@@ -13,11 +13,11 @@ namespace Movie_Database_App.Models
 
         }
 
-        //public Review(int id)
-        //{
-        //    MovieID = id;
-        //    //Movie = mov;
-        //}
+        public Review(int id)
+        {
+            MovieID = id;
+            //Movie = mov;
+        }
 
         [Key]
         public int ReviewID { get; set; }
