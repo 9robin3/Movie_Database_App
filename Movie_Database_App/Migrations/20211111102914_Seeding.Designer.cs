@@ -10,8 +10,8 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211111100220_InitNullableFK")]
-    partial class InitNullableFK
+    [Migration("20211111102914_Seeding")]
+    partial class Seeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,6 +257,52 @@ namespace Movie_Database_App.Migrations
                     b.HasKey("MovieID");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieID = 1,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
+                            Description = "desc",
+                            Genre = "Action",
+                            PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
+                            RunningTime = 200f,
+                            Title = "test1",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 2,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            Description = "desc2",
+                            Genre = "Scifi",
+                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
+                            RunningTime = 70f,
+                            Title = "test2",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 3,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2005),
+                            Description = "desc3",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test3",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        },
+                        new
+                        {
+                            MovieID = 4,
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
+                            Description = "desc4",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test4",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
+                        });
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
@@ -273,7 +319,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MovieID")
+                    b.Property<int>("MovieID")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -288,6 +334,17 @@ namespace Movie_Database_App.Migrations
                     b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            ReviewID = 1,
+                            Comment = "A",
+                            DatePosted = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            MovieID = 1,
+                            Rating = 0,
+                            ReviewTitle = "A"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -345,7 +402,9 @@ namespace Movie_Database_App.Migrations
                 {
                     b.HasOne("Movie_Database_App.Models.Movie", "Movie")
                         .WithMany("ReviewsList")
-                        .HasForeignKey("MovieID");
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Movie");
                 });
