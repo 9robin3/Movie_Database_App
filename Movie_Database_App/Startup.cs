@@ -63,6 +63,7 @@ namespace Movie_Database_App
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

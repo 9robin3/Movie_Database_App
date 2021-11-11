@@ -10,8 +10,8 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211110121357_IDTableNameChanges")]
-    partial class IDTableNameChanges
+    [Migration("20211111100220_InitNullableFK")]
+    partial class InitNullableFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,7 +225,7 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
                 {
-                    b.Property<int>("Movieid")
+                    b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -254,187 +254,9 @@ namespace Movie_Database_App.Migrations
                     b.Property<string>("TrailerUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Movieid");
+                    b.HasKey("MovieID");
 
                     b.ToTable("Movies");
-
-                    b.HasData(
-                        new
-                        {
-                            Movieid = 1,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
-                            Description = "desc",
-                            Genre = "Action",
-                            PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
-                            RunningTime = 200f,
-                            Title = "test1",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 2,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc2",
-                            Genre = "Scifi",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 70f,
-                            Title = "test2",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 3,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2005),
-                            Description = "desc3",
-                            Genre = "Horror",
-                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
-                            RunningTime = 120f,
-                            Title = "test3",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 4,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
-                            Description = "desc4",
-                            Genre = "Horror",
-                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
-                            RunningTime = 120f,
-                            Title = "test4",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 5,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc5",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 70f,
-                            Title = "test5",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 6,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
-                            Description = "desc6",
-                            Genre = "Action",
-                            PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
-                            RunningTime = 200f,
-                            Title = "test6",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 7,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc7",
-                            Genre = "Scifi",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 70f,
-                            Title = "test7",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 8,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test8",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 9,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test9",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 10,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test10",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 11,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test11",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 12,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Scifi",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test12",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 13,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Horror",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test13",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 14,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test14",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 15,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Adventure",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test15",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        },
-                        new
-                        {
-                            Movieid = 16,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
-                            Description = "desc8",
-                            Genre = "Comedy",
-                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
-                            RunningTime = 320f,
-                            Title = "test16",
-                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
-                        });
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Review", b =>
@@ -451,7 +273,7 @@ namespace Movie_Database_App.Migrations
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Movieid1")
+                    b.Property<int?>("MovieID")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -463,7 +285,7 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("Movieid1");
+                    b.HasIndex("MovieID");
 
                     b.ToTable("Reviews");
                 });
@@ -523,7 +345,7 @@ namespace Movie_Database_App.Migrations
                 {
                     b.HasOne("Movie_Database_App.Models.Movie", "Movie")
                         .WithMany("ReviewsList")
-                        .HasForeignKey("Movieid1");
+                        .HasForeignKey("MovieID");
 
                     b.Navigation("Movie");
                 });

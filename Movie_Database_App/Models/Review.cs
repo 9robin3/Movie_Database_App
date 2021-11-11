@@ -13,18 +13,18 @@ namespace Movie_Database_App.Models
 
         }
 
-        public Review(int id)
-        {
-            MovieID = id;
-            //Movie = mov;
-        }
+        //public Review(int id)
+        //{
+        //    MovieID = id;
+        //    //Movie = mov;
+        //}
 
         [Key]
         public int ReviewID { get; set; }
         //FK:
         [ForeignKey("MovieID")]
-        [NotMapped]
-        public int MovieID { get; set; }
+        public int? MovieID { get; set; }
+        //[NotMapped]
         public Movie Movie { get; set; }
         [Required]
         public string ReviewTitle { get; set; }

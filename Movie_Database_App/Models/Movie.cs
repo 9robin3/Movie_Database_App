@@ -12,11 +12,11 @@ namespace Movie_Database_App.Models
         {
             ReviewsList = new List<Review>();
         }
-        
-        public Movie(int ID)
-        {
-            MovieID = ID;
-        }
+
+        //public Movie(int Id)
+        //{
+        //    MovieID = Id;
+        //}
 
         //public Movie(string title, float runningTime, string description)
         //{
@@ -24,7 +24,7 @@ namespace Movie_Database_App.Models
         //    RunningTime = runningTime;
         //    Description = description;
         //}
-        
+
         [Key]
         public int MovieID { get; set; }
         [Required]

@@ -13,6 +13,7 @@ namespace Movie_Database_App.Data
     {
         public AppDbContext()
         {
+
         }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -26,33 +27,21 @@ namespace Movie_Database_App.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            base.OnModelCreating(modelBuilder);
             //Dummy hardcoded data
             //Replace with API fetched JSON/XML Data
-            //modelBuilder.Entity<Project>().HasKey(m => m.ProjectPath);
-            //modelBuilder.Entity<Target>().HasKey(m => m.Guid);
-            //base.OnModelCreating(builder);
 
-            //base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Movie>().HasData(
-                    new Movie {  MovieID = 1, Title = "test1", RunningTime = 200, Description = "desc",Genre = "Action" , PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2021-01-01) },
-                    new Movie { MovieID = 2, Title = "test2", RunningTime = 70, Description = "desc2", Genre = "Scifi", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01)},
-                    new Movie { MovieID = 3, Title = "test3", RunningTime = 120, Description = "desc3", Genre = "Horror", PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2007 - 01 - 01) },
-                    new Movie { MovieID = 4, Title = "test4", RunningTime = 120, Description = "desc4", Genre = "Horror", PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(1997 - 01 - 01) },
-                    new Movie { MovieID = 5, Title = "test5", RunningTime = 70, Description = "desc5", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 6, Title = "test6", RunningTime = 200, Description = "desc6", Genre = "Action", PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2021 - 01 - 01) },
-                    new Movie { MovieID = 7, Title = "test7", RunningTime = 70, Description = "desc7", Genre = "Scifi", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 8, Title = "test8", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 9, Title = "test9", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 10, Title = "test10", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 11, Title = "test11", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 12, Title = "test12", RunningTime = 320, Description = "desc8", Genre = "Scifi", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 13, Title = "test13", RunningTime = 320, Description = "desc8", Genre = "Horror", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 14, Title = "test14", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 15, Title = "test15", RunningTime = 320, Description = "desc8", Genre = "Adventure", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
-                    new Movie { MovieID = 16, Title = "test16", RunningTime = 320, Description = "desc8", Genre = "Comedy", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) }
+            modelBuilder.Entity<Movie>().HasKey(m => m.MovieID);
+            
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Movie>().HasData(
 
-                );
+            //        new Movie { MovieID = 1, Title = "test1", RunningTime = 200, Description = "desc", Genre = "Action", PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2021 - 01 - 01) },
+            //        new Movie { MovieID = 2, Title = "test2", RunningTime = 70, Description = "desc2", Genre = "Scifi", PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2019 - 01 - 01) },
+            //        new Movie { MovieID = 3, Title = "test3", RunningTime = 120, Description = "desc3", Genre = "Horror", PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(2007 - 01 - 01) },
+            //        new Movie { MovieID = 4, Title = "test4", RunningTime = 120, Description = "desc4", Genre = "Horror", PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg", TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment", DatePublished = new DateTime(1997 - 01 - 01) }
+                    
+            //        );
+                    
         }
 
        
