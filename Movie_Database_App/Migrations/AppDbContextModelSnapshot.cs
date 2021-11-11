@@ -254,8 +254,6 @@ namespace Movie_Database_App.Migrations
 
                     b.HasKey("MovieID");
 
-                    b.HasIndex("MovieID");
-
                     b.ToTable("Movies");
 
                     b.HasData(

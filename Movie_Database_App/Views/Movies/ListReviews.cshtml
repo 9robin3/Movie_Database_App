@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Movie_Database_App.Models.Review>
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/Shared/_PartialLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reviews</h1>
+<hr />
+<p>
+    <a asp-controller ="Reviews" asp-action="Create">Add review</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePosted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePosted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

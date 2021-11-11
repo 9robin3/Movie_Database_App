@@ -28,7 +28,7 @@ namespace Movie_Database_App.Models
         //}
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieID { get; set; }
         [Required]
         public string Title { get; set; }

@@ -37,7 +37,7 @@ namespace Movie_Database_App.Data
             //Replace with API fetched JSON/XML Data
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Movie>().HasIndex(m => m.MovieID);
+            //modelBuilder.Entity<Movie>().HasKey(m => m.MovieID);
 
             modelBuilder.Entity<Movie>().HasData(
 

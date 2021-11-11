@@ -247,11 +247,6 @@ namespace Movie_Database_App.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_MovieID",
-                table: "Movies",
-                column: "MovieID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_MovieID",
                 table: "Reviews",
                 column: "MovieID");

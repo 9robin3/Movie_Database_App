@@ -25,9 +25,9 @@ namespace Movie_Database_App.Controllers
             return View(await _context.Movies.ToListAsync());
         }
 
-        public async Task<IActionResult> ListReviews()
+        public async Task<IActionResult> ListReviews(int id)
         {
-            return View(await _context.Reviews.ToListAsync());
+            return View(await _context.Reviews.Where(r => r.MovieID == id).ToListAsync());
         }
 
         // GET: Movies/Details/5

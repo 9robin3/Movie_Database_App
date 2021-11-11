@@ -10,7 +10,7 @@ using Movie_Database_App.Data;
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211111112639_Init")]
+    [Migration("20211111130836_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -255,8 +255,6 @@ namespace Movie_Database_App.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MovieID");
-
-                    b.HasIndex("MovieID");
 
                     b.ToTable("Movies");
 

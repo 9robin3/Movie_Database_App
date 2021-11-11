@@ -69,12 +69,9 @@
 
 <div>
     @*@Html.Partial("~/Views/Reviews/Create.cshtml", new Review())*@
-    <a href="@Url.Action("Create", "Reviews", new { id = @Model.MovieID })" class="btn btn-warning" role="button">Create test</a>
+    <a href="@Url.Action("Create", "Reviews", new { id = @Model.MovieID })" class="btn btn-warning" role="button">Add Review</a>
     @*<a>@Url.Action("Create", "Reviews", new { movie = id })</a>*@
 </div>
-
-
-
 
 <hr />
 
@@ -85,58 +82,60 @@
         <dd>Comment</dd>
     </dt>
 
-    @foreach (Review rev in Model.ReviewsList)
-    {
-        <tr>
-            <th>@rev.ReviewTitle</th>
-            <td>@rev.Rating</td>
-            <td>@rev.Comment</td>
-        </tr>
-    }
-</table>
+    <a href="@Url.Action("ListReviews", "Movies", new { id = @Model.MovieID })" class="btn btn-warning" role="button">See Reviews</a>
+    @*@foreach (Review rev in Model.ReviewsList)
+            {
+                <tr>
+                    <th>@rev.ReviewTitle</th>
+                    <td>@rev.Rating</td>
+                    <td>@rev.Comment</td>
+                </tr>
+            }
+        </table>*@
+    <
 
 
-@*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>*@
-<a asp-action="Index">Back to List</a>
-
-
-
-
-
+    @*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>*@
+    <a asp-action="Index">Back to List</a>
 
 
 
-@*////Pseudo code to run on button click*@
 
 
-@*<input type="submit" value="Create" class="btn btn-primary" asp-action="CreateReview" />*@
 
-@*@AddReview()
+
+
+    @*////Pseudo code to run on button click*@
+
+
+    @*<input type="submit" value="Create" class="btn btn-primary" asp-action="CreateReview" />*@
+
+    @*@AddReview()
+            {
+
+                //@Model means that THIS model (Movie) shall be sent to the review, and the Movie prop set to it
+
+                Review rev = new Review()
+                rev.Movie = @Model
+                reviewsList.Add(rev);
+
+                //Create in review controller?
+                ---Review.Create() ?
+
+
+        }*@
+
+    @*////Pseudo code to show all reviews of this movie
+
+        @foreach (Review rev in Model.ReviewsList)
         {
-
-            //@Model means that THIS model (Movie) shall be sent to the review, and the Movie prop set to it
-
-            Review rev = new Review()
-            rev.Movie = @Model
-            reviewsList.Add(rev);
-
-            //Create in review controller?
-            ---Review.Create() ?
-
-
-    }*@
-
-@*////Pseudo code to show all reviews of this movie
-
-    @foreach (Review rev in Model.ReviewsList)
-    {
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(rev => rev.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-    }*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(rev => rev.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+        }*@
 
 
 
