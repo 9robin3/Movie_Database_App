@@ -24,6 +24,10 @@ namespace Movie_Database_App.Controllers
         {
             return View(await _dbContext.Reviews.ToListAsync());
         }
+        public async Task<IActionResult> ListReviews(int id)
+        {
+            return PartialView(await _dbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
+        }
 
         // GET: Reviews/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -48,7 +52,6 @@ namespace Movie_Database_App.Controllers
         {
             Review rev = new Review();
             rev.MovieID = id;
-            //var rev = _dbContext.Reviews.FindAsync(id);
             return View(rev);
         }
 
@@ -57,7 +60,7 @@ namespace Movie_Database_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieID, ReviewID, ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Create([Bind("ReviewID,MovieID,MovieObj,ReviewTitle,Rating,Comment,DatePosted")] Review review)
         {
             if (ModelState.IsValid)
             {

@@ -12,33 +12,36 @@ namespace Movie_Database_App.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _DbContext;
 
         public MoviesController(AppDbContext context)
         {
-            _context = context;
+            _DbContext = context;
         }
 
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            
+            return View(await _DbContext.Movies.ToListAsync());
         }
 
-        public async Task<IActionResult> ListReviews(int id)
+        public async Task<IActionResult> ListReviews(int? id)
         {
-            return View(await _context.Reviews.Where(r => r.MovieID == id).ToListAsync());
+            return PartialView(await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
         }
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
             }
-
-            var movie = await _context.Movies
+            await ListReviews(id);
+            //var revs = await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync();
+            var movie = await _DbContext.Movies.Include(m => m.ReviewsList)
                 .FirstOrDefaultAsync(m => m.MovieID == id);
             if (movie == null)
             {
@@ -63,8 +66,8 @@ namespace Movie_Database_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
-                await _context.SaveChangesAsync();
+                _DbContext.Add(movie);
+                await _DbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(movie);
@@ -84,7 +87,7 @@ namespace Movie_Database_App.Controllers
             }
 
             ////Liknande logik för review listan??? Review where movie ID = this?
-            return View("_Search", await _context.Movies.
+            return View("_Search", await _DbContext.Movies.
                     Where(mov => mov.Title.Contains(search)).ToListAsync());
 
         }
@@ -104,7 +107,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _DbContext.Movies.FindAsync(id);
             if (movie == null)
             {
                 return NotFound();
@@ -128,8 +131,8 @@ namespace Movie_Database_App.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
-                    await _context.SaveChangesAsync();
+                    _DbContext.Update(movie);
+                    await _DbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -155,7 +158,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies
+            var movie = await _DbContext.Movies
                 .FirstOrDefaultAsync(m => m.MovieID == id);
             if (movie == null)
             {
@@ -170,16 +173,16 @@ namespace Movie_Database_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
-            _context.Movies.Remove(movie);
-            await _context.SaveChangesAsync();
+            var movie = await _DbContext.Movies.FindAsync(id);
+            _DbContext.Movies.Remove(movie);
+            await _DbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
 
         private bool MovieExists(int id)
         {
-            return _context.Movies.Any(e => e.MovieID == id);
+            return _DbContext.Movies.Any(e => e.MovieID == id);
         }
     }
 }
