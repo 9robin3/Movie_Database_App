@@ -93,7 +93,7 @@ namespace Movie_Database_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MovieID,ReviewID,ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,MovieID,MovieObj,ReviewTitle,Rating,Comment,DatePosted")] Review review)
         {
             if (id != review.ReviewID)
             {

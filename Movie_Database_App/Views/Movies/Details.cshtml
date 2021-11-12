@@ -61,7 +61,6 @@
 
 <hr />
 
-<h2>Reviews</h2>
 
 <div>
     @*@Html.Partial("~/Views/Reviews/Create.cshtml", new Review())*@
@@ -100,17 +99,17 @@
 @*@Html.Partial("~/Views/Movies/ListReviews.cshtml", new Review())@*@
 @*<a href="@Url.Action("ListReviews", "Reviews", new { id = @Model.MovieID })" class="btn btn-warning" role="button">See Reviews</a>*@
 @*@Html.Partial("~/Views/Reviews/ListReviews.cshtml", Model.ReviewsList)*@
-@Html.Partial("~/Views/Movies/ListReviews.cshtml", Model.ReviewsList);
+@Html.Partial("~/Views/Movies/ListReviews.cshtml", Model.ReviewsList)
 
 
-@foreach (var rev in Model.ReviewsList)
+@*@foreach (var rev in Model.ReviewsList)
 {
     <tr>
         <th>@rev.ReviewTitle</th>
         <td>@rev.Rating</td>
         <td>@rev.Comment</td>
     </tr>
-}
+}*@
 
 @*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>*@
 <a asp-action="Index">Back to List</a>

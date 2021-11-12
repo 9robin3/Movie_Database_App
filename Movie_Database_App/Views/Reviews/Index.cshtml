@@ -57,8 +57,8 @@
                 @Html.DisplayFor(modelItem => item.DatePosted)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
+                <a asp-controller="Reviews" asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
+                @*<a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>*@
                 <a asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
             </td>
         </tr>
