@@ -66,6 +66,20 @@
 <div>
     @*@Html.Partial("~/Views/Reviews/Create.cshtml", new Review())*@
     <a href="@Url.Action("Create", "Reviews", new { id = @Model.MovieID })" class="btn btn-warning" role="button">Add Review</a>
+
+    <script type="text/javascript">
+    $(function () {
+        //Your Test Data
+        var id = @Model.MovieID;
+
+        //Perform your Get
+        $.get('@Url.Action("Create","Review")', { input: id }, function (data) {
+            //Populate your "rData" element with the results
+            $("#Reviews").html(data);
+        });
+    });
+    </script>
+
     @*<a>@Url.Action("Create", "Reviews", new { movie = id })</a>*@
 </div>
 
@@ -101,8 +115,5 @@
 @*<a asp-action="Edit" asp-route-id="@Model.MovieID">Edit</a>*@
 <a asp-action="Index">Back to List</a>
 
-<script>
-
-</script>
 
 
