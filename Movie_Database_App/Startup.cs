@@ -39,7 +39,9 @@ namespace Movie_Database_App
             services.AddIdentity<IdentityUser, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<AppDbContext>();
+            }).AddDefaultTokenProviders()
+            .AddDefaultUI()
+            .AddEntityFrameworkStores<AppDbContext>();
             //services.AddTransient<Seeder>();
 
 
