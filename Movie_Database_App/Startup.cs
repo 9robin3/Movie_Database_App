@@ -31,6 +31,7 @@ namespace Movie_Database_App
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             //services.AddDefaultIdentity<AppUser>()
             //.AddEntityFrameworkStores<AppDbContext>();
@@ -40,6 +41,8 @@ namespace Movie_Database_App
                 cfg.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<AppDbContext>();
             //services.AddTransient<Seeder>();
+
+
 
             //services.AddDefaultIdentity<IdentityUser>()
             //        .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
@@ -51,6 +54,7 @@ namespace Movie_Database_App
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+              
             }
             else
             {
@@ -63,14 +67,15 @@ namespace Movie_Database_App
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-            
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Movies}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

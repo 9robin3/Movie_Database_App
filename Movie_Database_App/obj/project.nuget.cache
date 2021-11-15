@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9/V4G5NyXKXk1c1MwYmAi5jMsB83GotQDvE83CHFE4kDgB3PLvIGBvHY6+LRHedbpO+ehH/GlMwfcP/5yXyCfA==",
+  "dgSpecHash": "6hhhLVjUJkXm1kGpEfZrkeJ/a2DkRsI6DFxqA7qcfh/PHzsuhA47on1GMcTjKc059pGPlcWR/iblfZrk+UmngQ==",
   "success": true,
   "projectFilePath": "D:\\Bibliotek\\Dokument\\Development\\Portfolio\\Web Development\\Movie_Database_App\\Movie_Database_App\\Movie_Database_App.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\5.0.8\\microsoft.aspnetcore.dataprotection.5.0.8.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\5.0.8\\microsoft.aspnetcore.dataprotection.abstractions.5.0.8.nupkg.sha512",
+    "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.12\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.12.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.11.nupkg.sha512",
     "C:\\Users\\andbl\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\5.0.2\\microsoft.aspnetcore.identity.ui.5.0.2.nupkg.sha512",
