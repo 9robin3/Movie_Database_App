@@ -35,12 +35,13 @@ namespace Movie_Database_App
             //services.AddDefaultIdentity<AppUser>()
             //.AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddIdentity<AppUser, AppRole>(cfg => {
+            services.AddIdentity<IdentityUser, IdentityRole>(cfg =>
+            {
                 cfg.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<AppDbContext>();
             //services.AddTransient<Seeder>();
 
-            //services.AddDefaultIdentity<AppUser>();
+            //services.AddDefaultIdentity<IdentityUser>()
             //        .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
         }
 
