@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,7 @@ namespace Movie_Database_App.Controllers
         }
 
         // GET: Reviews/Create
+        [Authorize]
         public IActionResult Create(int id)
         {
             Review rev = new Review();
@@ -91,6 +93,7 @@ namespace Movie_Database_App.Controllers
         // POST: Reviews/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReviewID,MovieID,MovieObj,ReviewTitle,Rating,Comment,DatePosted")] Review review)
@@ -124,6 +127,7 @@ namespace Movie_Database_App.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
