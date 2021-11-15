@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Movie_Database_App.Data
 {
-    public class AppRole: IdentityRole
+    public class AppRole: IdentityRole<string>
     {
         public string RoleInfo { get; set; }
     }

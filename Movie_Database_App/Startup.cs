@@ -32,7 +32,7 @@ namespace Movie_Database_App
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 
-            //services.AddDefaultIdentity<IdentityUser>()
+            //services.AddDefaultIdentity<AppUser>()
             //.AddEntityFrameworkStores<AppDbContext>();
 
             services.AddIdentity<AppUser, AppRole>(cfg => {
@@ -40,7 +40,7 @@ namespace Movie_Database_App
             }).AddEntityFrameworkStores<AppDbContext>();
             //services.AddTransient<Seeder>();
 
-            //services.AddDefaultIdentity<AppUser>()
+            //services.AddDefaultIdentity<AppUser>();
             //        .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
         }
 
