@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +18,11 @@ namespace Movie_Database_App.Controllers
         public ReviewsController(AppDbContext context)
         {
             _dbContext = context;
+        }
+
+        public string GetCurrentUserID()
+        {
+            return User.Identity.GetUserId();
         }
 
         // GET: Reviews
@@ -53,6 +58,7 @@ namespace Movie_Database_App.Controllers
         public IActionResult Create(int id)
         {
             Review rev = new Review();
+            rev.UserName = GetCurrentUserID();
             rev.MovieID = id;
             return View(rev);
         }
@@ -77,17 +83,22 @@ namespace Movie_Database_App.Controllers
         // GET: Reviews/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            string userFound = _dbContext.Reviews.Where(r => r.UserName == GetCurrentUserID()).FirstOrDefault().ToString();
+            if(userFound.Count() > 0)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var review = await _dbContext.Reviews.FindAsync(id);
-            if (review == null)
-            {
-                return NotFound();
+                var review = await _dbContext.Reviews.FindAsync(id);
+                if (review == null)
+                {
+                    return NotFound();
+                }
+                return View(review);
             }
-            return View(review);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Reviews/Edit/5
@@ -130,19 +141,24 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            string userFound = _dbContext.Reviews.Where(r => r.UserName == GetCurrentUserID()).FirstOrDefault().ToString();
+            if (userFound.Count() > 0)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var review = await _dbContext.Reviews
-                .FirstOrDefaultAsync(m => m.ReviewID == id);
-            if (review == null)
-            {
-                return NotFound();
-            }
+                var review = await _dbContext.Reviews
+                    .FirstOrDefaultAsync(m => m.ReviewID == id);
+                if (review == null)
+                {
+                    return NotFound();
+                }
 
-            return View(review);
+                return View(review);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Reviews/Delete/5

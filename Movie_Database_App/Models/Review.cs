@@ -17,10 +17,13 @@ namespace Movie_Database_App.Models
         {
             MovieID = id;
             MovieObj = mov;
+            //UserName = userName;
         }
 
         [Key]
         public int ReviewID { get; set; }
+
+        public string UserName{ get; set; }
         //FK:
         [ForeignKey("MovieID")]
         public int MovieID { get; set; }
