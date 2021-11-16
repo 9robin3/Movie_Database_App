@@ -22,13 +22,12 @@ namespace Movie_Database_App.Models
 
         [Key]
         public int ReviewID { get; set; }
-
-        public string UserName{ get; set; }
         //FK:
         [ForeignKey("MovieID")]
         public int MovieID { get; set; }
         //[NotMapped]
         public Movie MovieObj { get; set; }
+        public string UserName { get; set; }
         [Required]
         public string ReviewTitle { get; set; }
         [Required]
@@ -42,6 +41,8 @@ namespace Movie_Database_App.Models
         public string Comment { get; set; }
         [Required]
         public DateTime DatePosted { get; set; }
+
+
 
     }
 }

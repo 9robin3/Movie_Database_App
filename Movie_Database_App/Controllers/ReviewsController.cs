@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -22,7 +23,7 @@ namespace Movie_Database_App.Controllers
 
         public string GetLoggedInUser()
         {
-            return User.Identity.GetUserName();
+            return User.FindFirst(ClaimTypes.Email).Value;
         }
 
         // GET: Reviews
@@ -70,7 +71,7 @@ namespace Movie_Database_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewID,UserName,MovieID,MovieObj,ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Create([Bind("ReviewID,MovieID,MovieObj,UserName,ReviewTitle,Rating,Comment,DatePosted")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -86,8 +87,8 @@ namespace Movie_Database_App.Controllers
         // GET: Reviews/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            //string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
-            //if(reviewAuthor.Count() > 0)
+            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser()).ToString();
+            if (reviewAuthor.Count() > 0)
             {
                 if (id == null)
                 {
@@ -101,7 +102,7 @@ namespace Movie_Database_App.Controllers
                 }
                 return View(review);
             }
-            //return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Reviews/Edit/5
@@ -110,7 +111,7 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,UserName,MovieID,MovieObj,ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("ReviewID,MovieID,MovieObj,UserName,ReviewTitle,Rating,Comment,DatePosted")] Review review)
         {
             if (id != review.ReviewID)
             {
@@ -144,7 +145,7 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
+            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser()).FirstOrDefault().ToString();
             if (reviewAuthor.Count() > 0)
             {
                 if (id == null)
