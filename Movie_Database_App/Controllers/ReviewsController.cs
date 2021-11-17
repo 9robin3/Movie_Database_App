@@ -92,7 +92,7 @@ namespace Movie_Database_App.Controllers
             
             if (reviewAuthor == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
             if (reviewAuthor.Count() > 0)
@@ -157,6 +157,12 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
+            if(reviewAuthor == null)
+            {
+                return NotFound();
+            }
+            
+            
             if (reviewAuthor.Count() > 0)
             {
                 if (id == null)
