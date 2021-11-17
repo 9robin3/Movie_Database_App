@@ -13,10 +13,10 @@ namespace Movie_Database_App.Models
             
         }
 
-        public Review(int id)
+        public Review(int id, Movie mov)
         {
             MovieID = id;
-            //MovieObj = mov;
+            MovieObj = mov;
             //UserName = userName;
         }
 

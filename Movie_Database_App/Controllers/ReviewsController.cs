@@ -85,9 +85,16 @@ namespace Movie_Database_App.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser()).ToString();
+            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
+            
+            if (reviewAuthor == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             if (reviewAuthor.Count() > 0)
             {
                 if (id == null)
@@ -102,6 +109,10 @@ namespace Movie_Database_App.Controllers
                 }
                 return View(review);
             }
+            //else
+            //{
+            //    return RedirectToAction(nameof(Index)); 
+            //}
             return RedirectToAction(nameof(Index));
         }
 
@@ -145,7 +156,7 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser()).FirstOrDefault().ToString();
+            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
             if (reviewAuthor.Count() > 0)
             {
                 if (id == null)
@@ -162,6 +173,10 @@ namespace Movie_Database_App.Controllers
 
                 return View(review);
             }
+            //else
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
             return RedirectToAction(nameof(Index));
         }
 
