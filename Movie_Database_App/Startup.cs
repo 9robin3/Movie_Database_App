@@ -33,18 +33,22 @@ namespace Movie_Database_App
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            //services.AddDefaultIdentity<AppUser>()
-            //.AddEntityFrameworkStores<AppDbContext>();
+            //services.AddAuthentication(o =>
+            //{
+            //    o.DefaultScheme = IdentityConstants.ApplicationScheme;
+            //    o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+            //})
+            //    .AddIdentityCookies(o => { });
 
             services.AddIdentity<AppUser, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
+                cfg.Stores.MaxLengthForKeys = 128;
+                //cfg.SignIn.RequireConfirmedAccount = true;
             }).AddDefaultTokenProviders()
             .AddDefaultUI()
             .AddEntityFrameworkStores<AppDbContext>();
-            //services.AddTransient<Seeder>();
-
-
+            ////services.AddTransient<Seeder>();
 
             //services.AddDefaultIdentity<IdentityUser>()
             //        .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders().AddDefaultUI();
