@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Movie_Database_App.Data
 {
-    public class AppDbContext: IdentityDbContext
+    public class AppDbContext: IdentityDbContext<AppUser>
     {
         public AppDbContext()
         {

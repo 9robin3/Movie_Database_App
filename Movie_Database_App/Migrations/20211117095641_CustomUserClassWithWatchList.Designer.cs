@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Database_App.Data;
 
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211117095641_CustomUserClassWithWatchList")]
+    partial class CustomUserClassWithWatchList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -390,7 +392,7 @@ namespace Movie_Database_App.Migrations
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
                 {
                     b.HasOne("Movie_Database_App.Models.AppUser", null)
-                        .WithMany("WatchList")
+                        .WithMany("watchList")
                         .HasForeignKey("AppUserId");
                 });
 
@@ -407,7 +409,7 @@ namespace Movie_Database_App.Migrations
 
             modelBuilder.Entity("Movie_Database_App.Models.AppUser", b =>
                 {
-                    b.Navigation("WatchList");
+                    b.Navigation("watchList");
                 });
 
             modelBuilder.Entity("Movie_Database_App.Models.Movie", b =>
