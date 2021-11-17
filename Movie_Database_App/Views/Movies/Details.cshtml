@@ -58,7 +58,25 @@
         </dd>
     </dl>
     <dt>
-        <a href="" class="btn btn-warning" role="button">Add to watchlist</a>
+
+        @*<script type="text/javascript">
+    $('#UseShipAddr').click(function () {
+        $.ajax({
+            url: "@(Url.Action("UseShippingAddress", "Movies"))",
+            type: "POST",
+            data: { id: 50 },
+            cache: false,
+            async: true,
+            success: function (data) {
+                alert(data);
+            }
+        });
+    });
+        </script>*@
+
+
+
+        <a href="@Url.Action("AddToWatchList", "Movies", new { id = @Model.MovieID, mov = @Model })" class="btn btn-warning" role="button">Add to watchlist</a>
     </dt>
 </div>
 

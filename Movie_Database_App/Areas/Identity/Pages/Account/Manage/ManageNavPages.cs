@@ -10,7 +10,7 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account.Manage
     {
         public static string Index => "Index";
 
-        public static string Watchlist => "WatchList";
+        public static string WatchList => "Watch List";
 
         public static string Email => "Email";
 
@@ -28,7 +28,7 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account.Manage
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
-        public static string WatchListNavClass(ViewContext viewContext) => PageNavClass(viewContext, Watchlist);
+        public static string WatchListNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
 

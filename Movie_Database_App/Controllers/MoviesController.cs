@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +24,11 @@ namespace Movie_Database_App.Controllers
             _DbContext = context;
         }
 
+        public string GetLoggedInUser()
+        {
+            return User.FindFirst(ClaimTypes.Email).Value;
+        }
+
         // GET: Movies
         public async Task<IActionResult> Index()
         {
@@ -29,6 +39,17 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> ListReviews(int? id)
         {
             return PartialView(await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
+        }
+
+        public async Task<IActionResult> AddToWatchList(int? id, Movie mov)
+        {
+            AppUser user = _DbContext.Users.FirstOrDefault(x => x.Id == User.Identity.GetUserId());
+            user.WatchList.Add(mov);
+            //return PartialView(user.WatchList.Where(u => u.Equals(GetLoggedInUser())).ToList());
+            return RedirectToAction(nameof(Index));
+            //return RedirectToPage("~/Areas/Pages/Account/Index.cshtml");
+
+
         }
 
         // GET: Movies/Details/5
