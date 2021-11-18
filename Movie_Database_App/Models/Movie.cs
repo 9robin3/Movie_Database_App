@@ -42,5 +42,6 @@ namespace Movie_Database_App.Models
         public string TrailerUrl { get; set; }
         public DateTime DatePublished { get; set; }
         public List<Review> ReviewsList { get; set; }
+        public List<AppUser> UserList { get; set; } = new List<AppUser>();
     }
 }

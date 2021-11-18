@@ -15,6 +15,11 @@ namespace Movie_Database_App.Models
             //WatchList = new List<Movie>();
         }
         public List<Movie> WatchList { get; set; } = new List<Movie>();
+        //public List<WatchListItem> WatchList { get; set; } = new List<WatchListItem>();
 
+        internal int Count()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

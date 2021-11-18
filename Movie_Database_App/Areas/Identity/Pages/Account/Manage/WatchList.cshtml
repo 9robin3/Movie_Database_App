@@ -20,7 +20,7 @@
             </th>
         </div>
         <div>
-            @Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList)
+            @*@Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList)*@
         </div>
 
     </div>
@@ -55,8 +55,8 @@
                 <th></th>
             </tr>
         </thead>*@
-        <tbody>
-            @foreach (var item in Model.UserObj.WatchList)
+        @*<tbody>
+            @foreach (var item in Model.UserObj)
             {
             <tr>
                 <td>
@@ -87,7 +87,7 @@
             </tr>
             }
         </tbody>
-    </table>
+    </table>*@
 </div>
 
 @section Scripts {

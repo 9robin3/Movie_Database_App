@@ -43,7 +43,8 @@ namespace Movie_Database_App.Controllers
 
         public async Task<IActionResult> ListWatchList()
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            AppUser user = await _DbContext.Users.Include(w => w.WatchList)
+                .FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             List<Movie> watchList = new List<Movie>();
             watchList = user.WatchList;
 
@@ -54,26 +55,22 @@ namespace Movie_Database_App.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToWatchList(int? id, Movie mov)
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            user.WatchList.Add(mov);
-            
-            System.Diagnostics.Debug.WriteLine(mov);
-            System.Diagnostics.Debug.WriteLine(user);
-            //return View(ListWatchList());
-            //return PartialView(user.WatchList.Where(u => u.Equals(GetLoggedInUser())).ToList());
+            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+
+            user.WatchList.Add(itemToAdd);
+            await _DbContext.SaveChangesAsync();
+       
             return RedirectToAction(nameof(ListWatchList));
-            //return RedirectToPage("~/Areas/Pages/Account/Index.cshtml");
         }
 
         public async Task<IActionResult> RemoveFromWatchList(int? id, Movie mov)
         {
             AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            user.WatchList.Remove(mov);
-            System.Diagnostics.Debug.WriteLine(mov);
-            System.Diagnostics.Debug.WriteLine(user);
-            //return PartialView(user.WatchList.Where(u => u.Equals(GetLoggedInUser())).ToList());
-            return RedirectToAction(nameof(Index));
-            //return RedirectToPage("~/Areas/Pages/Account/Index.cshtml");
+            var itemToRemove = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+            user.WatchList.Remove(itemToRemove);
+            await _DbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(ListWatchList));
         }
 
         // GET: Movies/Details/5

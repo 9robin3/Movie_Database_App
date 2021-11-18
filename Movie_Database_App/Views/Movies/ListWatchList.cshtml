@@ -63,6 +63,9 @@
                     @*<tr>*@
                     @Html.DisplayFor(modelItem => item.RunningTime)
                 </div>
+                <div>
+                    <a href="@Url.Action("RemoveFromWatchList", "Movies", new { id = item.MovieID, mov = Model })" class="btn btn-warning" role="button">Remove from watchlist</a>
+                </div>
             </div>
             @*<td>
                     @Html.DisplayFor(modelItem => item.Description)

@@ -28,7 +28,7 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account.Manage
         {
             AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             System.Diagnostics.Debug.WriteLine(user);
-            System.Diagnostics.Debug.WriteLine(user.WatchList);
+            //System.Diagnostics.Debug.WriteLine(user.WatchList);
             //User.FindFirst(ClaimTypes.Email).Value;
             return user;
         }
