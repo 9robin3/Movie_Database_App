@@ -61,9 +61,20 @@ namespace Movie_Database_App.Controllers
             AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
 
-            user.WatchList.Add(itemToAdd);
-            await _DbContext.SaveChangesAsync();
-       
+            /////Behöver kollas, fortfarande krash
+            if(user.WatchList.Contains(itemToAdd))
+            {
+
+                ViewBag.Text = "Movie already added to your list!";
+                return RedirectToAction(nameof(ListWatchList));
+                
+            }
+            else
+            {
+                user.WatchList.Add(itemToAdd);
+                await _DbContext.SaveChangesAsync();
+
+            }
             return RedirectToAction(nameof(ListWatchList));
         }
 

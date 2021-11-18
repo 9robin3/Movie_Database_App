@@ -1,5 +1,6 @@
 ﻿@model Movie_Database_App.Models.Movie
 
+
 @{
     //ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -58,25 +59,8 @@
         </dd>
     </dl>
     <dt>
-
-        @*<script type="text/javascript">
-    $('#UseShipAddr').click(function () {
-        $.ajax({
-            url: "@(Url.Action("UseShippingAddress", "Movies"))",
-            type: "POST",
-            data: { id: 50 },
-            cache: false,
-            async: true,
-            success: function (data) {
-                alert(data);
-            }
-        });
-    });
-        </script>*@
-
-
-
         <a href="@Url.Action("AddToWatchList", "Movies", new { id = @Model.MovieID, mov = Model })" class="btn btn-warning" role="button">Add to watchlist</a>
+        <strong>@ViewBag.Text</strong>
     </dt>
 </div>
 
