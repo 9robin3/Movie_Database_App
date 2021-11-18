@@ -12,9 +12,9 @@ namespace Movie_Database_App.Models
 
         public AppUser()
         {
-            WatchList = new List<Movie>();
+            //WatchList = new List<Movie>();
         }
-        public List<Movie> WatchList { get; set; }
+        public List<Movie> WatchList { get; set; } = new List<Movie>();
 
     }
 }

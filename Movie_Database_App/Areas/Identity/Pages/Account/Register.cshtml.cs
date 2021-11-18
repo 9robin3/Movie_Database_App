@@ -77,7 +77,7 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new AppUser { UserName = Input.Email, Email = Input.Email };
-                user.WatchList = new List<Movie>();
+                //user.WatchList = new List<Movie>();
                 System.Diagnostics.Debug.WriteLine(user.WatchList);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

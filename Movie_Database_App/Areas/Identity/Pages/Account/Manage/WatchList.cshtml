@@ -13,17 +13,81 @@
 
         <div>
             <th>
-                @Html.DisplayNameFor(model => model.UserObj)
+                <p>Username: </p>
             </th>
             <th>
-                @Html.DisplayFor(model => model.UserObj)
+                @Html.DisplayFor(model => model.UserObj.Email)
             </th>
         </div>
         <div>
-            @Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList))
+            @Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList)
         </div>
 
     </div>
+</div>
+
+
+
+
+
+<div>
+    <table class="table">
+        @*<thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserObj.wa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MovieID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatePosted)
+                </th>
+                <th></th>
+            </tr>
+        </thead>*@
+        <tbody>
+            @foreach (var item in Model.UserObj.WatchList)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunningTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunningTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PosterUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrailerUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePublished)
+                </td>
+               
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @section Scripts {
