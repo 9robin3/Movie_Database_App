@@ -20,7 +20,7 @@
             </th>
         </div>
         <div>
-            @Html.Partial("~/Views/Movies/_watchList.cshtml", new List<Movie>()))
+            @Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList))
         </div>
 
     </div>

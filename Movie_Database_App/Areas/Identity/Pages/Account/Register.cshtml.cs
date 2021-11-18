@@ -77,11 +77,13 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+                user.WatchList = new List<Movie>();
+                System.Diagnostics.Debug.WriteLine(user.WatchList);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    var watchList = _userManager.GetUserAsync(User).Result.WatchList;
-                    watchList = new List<Movie>();
+                    //List<Movie> watchList = new List<Movie>();
+                    //_userManager.GetUserAsync(User).Result.WatchList = watchList;
 
                     _logger.LogInformation("User created a new account with password.");
 

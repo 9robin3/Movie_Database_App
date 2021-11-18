@@ -43,8 +43,10 @@ namespace Movie_Database_App.Controllers
 
         public async Task<IActionResult> AddToWatchList(int? id, Movie mov)
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(x => x.Id == User.Identity.GetUserId());
+            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             user.WatchList.Add(mov);
+            System.Diagnostics.Debug.WriteLine(mov);
+            System.Diagnostics.Debug.WriteLine(user);
             //return PartialView(user.WatchList.Where(u => u.Equals(GetLoggedInUser())).ToList());
             return RedirectToAction(nameof(Index));
             //return RedirectToPage("~/Areas/Pages/Account/Index.cshtml");

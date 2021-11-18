@@ -14,18 +14,22 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account.Manage
 {
     public class WatchListModel : PageModel
     {
-        public static AppDbContext _DbContext;
+        public AppDbContext _DbContext = new AppDbContext();
         
         public AppUser UserObj { get; set; }
-
+        
         public void OnGet()
         {
-            //UserObj = GetLoggedInUser();
+            UserObj = GetLoggedInUser();
+
         }
 
         public AppUser GetLoggedInUser()
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(x => x.Id == User.Identity.GetUserId());
+            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            System.Diagnostics.Debug.WriteLine(user);
+            System.Diagnostics.Debug.WriteLine(user.WatchList);
+            //User.FindFirst(ClaimTypes.Email).Value;
             return user;
         }
     }
