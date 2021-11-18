@@ -4,78 +4,82 @@
     ViewData["Title"] = "Watch List";
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
-@*<p>
-    <a asp-controller="Movies" asp-action="Create">Add Movie</a>
-</p>*@
-  
+<h3>Your saved movies</h3>
+<hr />
 
-    <!--<form asp-controller="Movies" asp-action="Search">
-        <p>
-            <table>
-                <thead>
-                    Search for:
-                    <input id="MovieSearch" type="text" name="search" onkeyup="SearchMovie" />-->
-                    @*<input type="submit" value="Search" onkeypress="SearchMovie" />*@
-                <!--</thead>
-            </table>
-        </p>
-    </form>-->
 
-    @*<table hidden id="MoviesSearchTable" class="table">
+<!--<form asp-controller="Movies" asp-action="Search">
+    <p>
+        <table>
+            <thead>
+                Search for:
+                <input id="MovieSearch" type="text" name="search" onkeyup="SearchMovie" />-->
+@*<input type="submit" value="Search" onkeypress="SearchMovie" />*@
+<!--</thead>
+        </table>
+    </p>
+</form>-->
+@*<table hidden id="MoviesSearchTable" class="table">
     </table>*@
 
-    <table id="AllMovies" asp-controller="Movies" asp-action="Index">
-        <!--<thead>
-        <tr>
-            <th>
+<table id="AllMovies" asp-controller="Movies" asp-action="Index">
+    <!--<thead>
+    <tr>
+        <th>
 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RunningTime)
-            </th>-->
-        @*<th>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RunningTime)
+        </th>-->
+    @*<th>
             @Html.DisplayNameFor(model => model.Description)
         </th>*@
-        <!--<th></th>
+    <!--<th></th>
         </tr>
     </thead>-->
- 
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <td>
-                <div>
-                    @*<img src ="@Html.DisplayFor(modelItem => item.PosterUrl)" width="200" height="200" />*@
-                    <a asp-action="Details" asp-route-id="@item.MovieID"><img src="@item.PosterUrl" width="150" height="200"/></a>
-                    @*<br />*@
-                    @*<td>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <td>
+            <div>
+                @*<img src ="@Html.DisplayFor(modelItem => item.PosterUrl)" width="200" height="200" />*@
+                <a asp-action="Details" asp-route-id="@item.MovieID"><img src="@item.PosterUrl" width="150" height="200" /></a>
+                @*<br />*@
+                @*<td>
                         <a asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a>
                     </td>*@
-                    @*<br/>*@
-                    @*</div>*@
-                    @*<div>*@
-                    <div>
-                        @*@Html.DisplayFor(modelItem => item.Title)*@
-                        <a style="font-weight:bold" asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a>
+                @*<br/>*@
+                @*</div>*@
+                @*<div>*@
+                <div>
+                    @*@Html.DisplayFor(modelItem => item.Title)*@
+                    <a style="font-weight:bold" asp-action="Details" asp-route-id="@item.MovieID">@Html.DisplayFor(modelItem => item.Title)</a>
 
-                        @*</div>*@
-                        @*<tr>*@
-                        @Html.DisplayFor(modelItem => item.RunningTime)
-                    </div>
+                    @*</div>*@
+                    @*<tr>*@
+                    @Html.DisplayFor(modelItem => item.RunningTime)
                 </div>
-                @*<td>
+                <div>
+                    @Html.DisplayFor(modelItem => item.MovieID)
+                </div>
+                <div>
+                    <a href="@Url.Action("RemoveFromWatchList", "Movies", new { id = @item.MovieID })" class="btn btn-warning" role="button">Remove</a>
+                </div>
+            </div>
+            @*<td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>*@
-                @*<td>
+            @*<td>
                     <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> |
 
                     <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
                 </td>*@
-            </td>
-        }
-            </tbody>
+        </td>
+    }
+        </tbody>
     </table>

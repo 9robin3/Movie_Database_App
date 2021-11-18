@@ -9,18 +9,13 @@
 
 <div class="row">
     <div class="col-md-6">
-        <p>A collection of your saved movies to watch.</p>
+        <p>Your saved movies</p>
 
         <div>
             <th>
-                <p>Username: </p>
-            </th>
-            <th>
-                @Html.DisplayFor(model => model.UserObj.Email)
-            </th>
         </div>
         <div>
-            @*@Html.Partial("~/Views/Movies/_watchList.cshtml", Model.UserObj.WatchList)*@
+            @Html.Partial("~/Views/Movies/_watchList.cshtml", Model.WatchList)
         </div>
 
     </div>

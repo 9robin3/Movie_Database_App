@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace Movie_Database_App.Controllers
             _DbContext = context;
         }
 
-        public string GetLoggedInUser()
+        public string GetUserEmail()
         {
             return User.FindFirst(ClaimTypes.Email).Value;
         }
@@ -41,10 +42,11 @@ namespace Movie_Database_App.Controllers
             return PartialView(await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
         }
 
+        [Authorize]
         public async Task<IActionResult> ListWatchList()
         {
-            AppUser user = await _DbContext.Users.Include(w => w.WatchList)
-                .FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            AppUser user = await _DbContext.Users.Include(u => u.WatchList)
+                .FirstOrDefaultAsync(u => u.Email == GetUserEmail());
             List<Movie> watchList = new List<Movie>();
             watchList = user.WatchList;
 
@@ -53,6 +55,7 @@ namespace Movie_Database_App.Controllers
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddToWatchList(int? id, Movie mov)
         {
             AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
@@ -64,13 +67,14 @@ namespace Movie_Database_App.Controllers
             return RedirectToAction(nameof(ListWatchList));
         }
 
-        public async Task<IActionResult> RemoveFromWatchList(int? id, Movie mov)
+        [Authorize]
+        public async Task<IActionResult> RemoveFromWatchList(int? id)
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             var itemToRemove = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
             user.WatchList.Remove(itemToRemove);
             await _DbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(ListWatchList));
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Movies/Details/5

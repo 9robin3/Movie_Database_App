@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Movie_Database_App.Data;
 using Movie_Database_App.Models;
 
@@ -15,22 +16,20 @@ namespace Movie_Database_App.Areas.Identity.Pages.Account.Manage
     public class WatchListModel : PageModel
     {
         public AppDbContext _DbContext = new AppDbContext();
-        
-        public AppUser UserObj { get; set; }
+
+        public List<Movie> WatchList { get; set; } = new List<Movie>();
         
         public void OnGet()
         {
-            UserObj = GetLoggedInUser();
-
+            WatchList = GetLoggedInUserWatchList();
         }
 
-        public AppUser GetLoggedInUser()
+        public List<Movie> GetLoggedInUserWatchList()
         {
-            AppUser user = _DbContext.Users.FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            System.Diagnostics.Debug.WriteLine(user);
-            //System.Diagnostics.Debug.WriteLine(user.WatchList);
-            //User.FindFirst(ClaimTypes.Email).Value;
-            return user;
+            AppUser user =  _DbContext.Users.Include(w => w.WatchList)
+                .FirstOrDefault(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            List<Movie> tempList = user.WatchList;
+            return tempList;
         }
     }
 }

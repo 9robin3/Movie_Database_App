@@ -4,7 +4,7 @@
     ViewData["Title"] = "Watch List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Your list of saved movies to watch</h2>
+<h3>Your saved movies</h3>
 <hr />
 
 
@@ -64,7 +64,10 @@
                     @Html.DisplayFor(modelItem => item.RunningTime)
                 </div>
                 <div>
-                    <a href="@Url.Action("RemoveFromWatchList", "Movies", new { id = item.MovieID, mov = Model })" class="btn btn-warning" role="button">Remove from watchlist</a>
+                    @Html.DisplayFor(modelItem => item.MovieID)
+                </div>
+                <div>
+                    <a href="@Url.Action("RemoveFromWatchList", "Movies", new { id = @item.MovieID })" class="btn btn-warning" role="button">Remove</a>
                 </div>
             </div>
             @*<td>

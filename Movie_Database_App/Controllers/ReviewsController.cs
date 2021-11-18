@@ -14,14 +14,14 @@ namespace Movie_Database_App.Controllers
 {
     public class ReviewsController : Controller
     {
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext _DbContext;
 
         public ReviewsController(AppDbContext context)
         {
-            _dbContext = context;
+            _DbContext = context;
         }
 
-        public string GetLoggedInUser()
+        public string GetUserEmail()
         {
             return User.FindFirst(ClaimTypes.Email).Value;
         }
@@ -30,11 +30,11 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> Index()
         {
             //GetLoggedInUser();
-            return View(await _dbContext.Reviews.ToListAsync());
+            return View(await _DbContext.Reviews.ToListAsync());
         }
         public async Task<IActionResult> ListReviews(int id)
         {
-            return PartialView(await _dbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
+            return PartialView(await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
         }
 
         // GET: Reviews/Details/5
@@ -45,7 +45,7 @@ namespace Movie_Database_App.Controllers
                 return NotFound();
             }
 
-            var review = await _dbContext.Reviews
+            var review = await _DbContext.Reviews
                 .FirstOrDefaultAsync(m => m.ReviewID == id);
             if (review == null)
             {
@@ -61,7 +61,7 @@ namespace Movie_Database_App.Controllers
         {
             //string userName = GetLoggedInUser();
             Review rev = new Review();
-            rev.UserName = GetLoggedInUser();
+            rev.UserName = GetUserEmail();
             rev.MovieID = id;
             return View(rev);
         }
@@ -75,10 +75,10 @@ namespace Movie_Database_App.Controllers
         {
             if (ModelState.IsValid)
             {
-                review.UserName = GetLoggedInUser();
+                review.UserName = GetUserEmail();
                 //Review rev = new Review(id);
-                _dbContext.Add(review);
-                await _dbContext.SaveChangesAsync();
+                _DbContext.Add(review);
+                await _DbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(review);
@@ -88,32 +88,27 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
-            
-            if (reviewAuthor == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (reviewAuthor.Count() > 0)
+            var review = await _DbContext.Reviews.FindAsync(id);
+            //AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == review.UserName);
+            if(review.UserName == GetUserEmail())
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-
-                var review = await _dbContext.Reviews.FindAsync(id);
                 if (review == null)
                 {
                     return NotFound();
                 }
                 return View(review);
             }
-            //else
-            //{
-            //    return RedirectToAction(nameof(Index)); 
-            //}
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            //return RedirectToAction(nameof(Index)); 
+       
         }
 
         // POST: Reviews/Edit/5
@@ -133,8 +128,8 @@ namespace Movie_Database_App.Controllers
             {
                 try
                 {
-                    _dbContext.Update(review);
-                    await _dbContext.SaveChangesAsync();
+                    _DbContext.Update(review);
+                    await _DbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -156,34 +151,30 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            string reviewAuthor = _dbContext.Reviews.Where(r => r.UserName == GetLoggedInUser() && r.ReviewID == id).FirstOrDefault().ToString();
-            if(reviewAuthor == null)
+            //AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == GetUserEmail());
+            //string reviewAuthor = _DbContext.Reviews.FirstOrDefaultAsync(r => r.UserName == user.Email).ToString();
+            
+            if(id == null)
             {
                 return NotFound();
             }
-            
-            
-            if (reviewAuthor.Count() > 0)
-            {
-                if (id == null)
-                {
-                    return NotFound();
-                }
 
-                var review = await _dbContext.Reviews
-                    .FirstOrDefaultAsync(m => m.ReviewID == id);
+            var review = await _DbContext.Reviews.FindAsync(id);
+            //var review = await _DbContext.Reviews
+            //    .FirstOrDefaultAsync(m => m.ReviewID == id);
+            if (review.UserName == GetUserEmail())
+            {
                 if (review == null)
                 {
                     return NotFound();
-                }
-
+                 }
                 return View(review);
             }
-            //else
-            //{
-            //    return RedirectToAction(nameof(Index));
-            //}
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
         }
 
         // POST: Reviews/Delete/5
@@ -191,15 +182,15 @@ namespace Movie_Database_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var review = await _dbContext.Reviews.FindAsync(id);
-            _dbContext.Reviews.Remove(review);
-            await _dbContext.SaveChangesAsync();
+            var review = await _DbContext.Reviews.FindAsync(id);
+            _DbContext.Reviews.Remove(review);
+            await _DbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReviewExists(int id)
         {
-            return _dbContext.Reviews.Any(e => e.ReviewID == id);
+            return _DbContext.Reviews.Any(e => e.ReviewID == id);
         }
     }
 }

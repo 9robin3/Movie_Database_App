@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<Movie_Database_App.Models.Movie>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*<p>
     <a asp-controller="Movies" asp-action="Create">Add Movie</a>
 </p>*@
+<h2>Movie Database App</h2>
+<hr />
   
 
     <form asp-controller="Movies" asp-action="Search">
         <p>
             <table>
                 <thead>
-                    Search for:
+                    Search Movie:
                     <input id="MovieSearch" type="text" name="search" onkeyup="SearchMovie" />
                     @*<input type="submit" value="Search" onkeypress="SearchMovie" />*@
                 </thead>

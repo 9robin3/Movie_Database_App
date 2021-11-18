@@ -1,4 +1,3 @@
-D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.csproj.AssemblyReference.cache
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.GeneratedMSBuildEditorConfig.editorconfig
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.AssemblyInfoInputs.cache
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.AssemblyInfo.cs
@@ -209,3 +208,4 @@ D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\M
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\ref\Movie_Database_App.dll
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.pdb
 D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.genruntimeconfig.cache
+D:\Bibliotek\Dokument\Development\Portfolio\Web Development\Movie_Database_App\Movie_Database_App\obj\Debug\net5.0\Movie_Database_App.csproj.AssemblyReference.cache
