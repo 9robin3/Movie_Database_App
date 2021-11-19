@@ -59,8 +59,17 @@
         </dd>
     </dl>
     <dt>
-        <a href="@Url.Action("AddToWatchList", "Movies", new { id = @Model.MovieID, mov = Model })" class="btn btn-warning" role="button">Add to watchlist</a>
-        <strong>@ViewBag.Text</strong>
+        @if (ViewBag.ShowAddBtn ?? true)
+        {
+            <a href="@Url.Action("AddToWatchList", "Movies", new { id = @Model.MovieID })" class="btn btn-warning" role="button" id="AddW">Add to watchlist</a>
+        }
+        @if (ViewBag.ShowRemoveBtn ?? true)
+        {
+            <a href="@Url.Action("RemoveFromWatchList", "Movies", new { id = @Model.MovieID })" class="btn btn-warning" role="button" id="RemoveW">Remove</a>
+        }
+    </dt>
+    <dt>
+
     </dt>
 </div>
 

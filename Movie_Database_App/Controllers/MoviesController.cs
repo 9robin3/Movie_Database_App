@@ -56,21 +56,24 @@ namespace Movie_Database_App.Controllers
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> AddToWatchList(int? id, Movie mov)
+        public async Task<IActionResult> AddToWatchList(int? id)
         {
             AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
             var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+            
+            Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
 
             /////Behöver kollas, fortfarande krash
-            if(user.WatchList.Contains(itemToAdd))
+            //if (user.WatchList.Contains(itemExists))
+            if(itemToAdd.MovieID == id)
             {
 
-                ViewBag.Text = "Movie already added to your list!";
-                return RedirectToAction(nameof(ListWatchList));
-                
+                //ViewBag.ShowAddBtn = false;
+                //return RedirectToAction(nameof(Index));
             }
             else
             {
+                //ViewBag.ShowAddBtn = false;
                 user.WatchList.Add(itemToAdd);
                 await _DbContext.SaveChangesAsync();
 
@@ -82,10 +85,19 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> RemoveFromWatchList(int? id)
         {
             AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            var itemToRemove = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+  
+            //var itemToRemove = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+
+            var itemToRemove = user.WatchList.FirstOrDefault(w => w.MovieID == id);
             user.WatchList.Remove(itemToRemove);
             await _DbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ListWatchList));
+        }
+
+        public ActionResult HideAddWatchListBtn()
+        {
+            
+            return View();
         }
 
         // GET: Movies/Details/5
@@ -100,6 +112,24 @@ namespace Movie_Database_App.Controllers
             //var revs = await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync();
             var movie = await _DbContext.Movies.Include(m => m.ReviewsList)
                 .FirstOrDefaultAsync(m => m.MovieID == id);
+
+            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+
+            Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
+
+            /////Behöver kollas, fortfarande krash
+            //if (user.WatchList.Contains(itemExists))
+            if (itemToAdd.MovieID == id)
+            {
+                ViewBag.ShowAddBtn = false;
+                ViewBag.ShowRemoveBtn = true;
+            }
+            else
+            {
+                ViewBag.ShowAddBtn = true;
+                ViewBag.ShowRemoveBtn = false;
+            }
             if (movie == null)
             {
                 return NotFound();
