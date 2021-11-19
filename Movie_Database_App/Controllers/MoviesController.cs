@@ -27,7 +27,7 @@ namespace Movie_Database_App.Controllers
 
         public string GetUserEmail()
         {
-            return User.FindFirst(ClaimTypes.Email).Value;
+           return User.FindFirst(ClaimTypes.Email).Value;  
         }
 
         // GET: Movies
@@ -63,25 +63,26 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> AddToWatchList(int? id)
         {
-            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            //AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            //
+            
+            AppUser user = await _DbContext.Users.Include(u => u.WatchList)
+            .FirstOrDefaultAsync(u => u.Email == GetUserEmail());
             var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
             
-            Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
-
+            int itemCount = user.WatchList.Count(m => m.MovieID == id);
             /////Behöver kollas, fortfarande krash
             //if (user.WatchList.Contains(itemExists))
-            if(itemToAdd.MovieID == id)
+            if (itemCount == 0)
             {
-
-                //ViewBag.ShowAddBtn = false;
-                //return RedirectToAction(nameof(Index));
+                ViewBag.ShowAddBtn = true;
+                user.WatchList.Add(itemToAdd);
+                await _DbContext.SaveChangesAsync();
             }
             else
             {
-                //ViewBag.ShowAddBtn = false;
-                user.WatchList.Add(itemToAdd);
-                await _DbContext.SaveChangesAsync();
-
+                ViewBag.ShowAddBtn = false;
+                return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(ListWatchList));
         }
@@ -107,34 +108,43 @@ namespace Movie_Database_App.Controllers
             {
                 return NotFound();
             }
+
             await ListReviews(id);
             //var revs = await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync();
             var movie = await _DbContext.Movies.Include(m => m.ReviewsList)
                 .FirstOrDefaultAsync(m => m.MovieID == id);
 
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            //    var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _DbContext.Users.Include(u => u.WatchList)
+                           .FirstOrDefaultAsync(u => u.Email == GetUserEmail());
+                var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
 
-            //    Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
+                int itemCount = user.WatchList.Count(m => m.MovieID == id);
+                /////Behöver kollas, fortfarande krash
+                //if (user.WatchList.Contains(itemExists))
+                if(user == null)
+                {
+                    return View(movie);
+                }
+                
+                if (itemCount == 0)
 
-            //    /////Behöver kollas, fortfarande krash
-            //    //if (user.WatchList.Contains(itemExists))
-            //    if (itemToAdd.MovieID == id)
-            //    {
-            //        ViewBag.ShowAddBtn = false;
-            //        ViewBag.ShowRemoveBtn = true;
-            //    }
-            //    else
-            //    {
-            //        ViewBag.ShowAddBtn = true;
-            //        ViewBag.ShowRemoveBtn = false;
-            //    }
-            //}
-            //ViewBag.ShowAddBtn = true;
-            //ViewBag.ShowRemoveBtn = false;
-
+                {
+                    ViewBag.ShowAddBtn = true;
+                    ViewBag.ShowRemoveBtn = false;
+                }
+                else
+                {
+                    ViewBag.ShowAddBtn = false;
+                    ViewBag.ShowRemoveBtn = true;
+                }
+            }
+            else
+            {
+                ViewBag.ShowAddBtn = true;
+                ViewBag.ShowRemoveBtn = false;
+            }
             if (movie == null)
             {
                 return NotFound();
