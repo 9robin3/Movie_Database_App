@@ -4,8 +4,11 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Movie Database App</h1>
-    <p>Made by Robin Andblom 2021</p>
+    <h2 class="display-4">Movie Database App</h2>
+    <h3>You succesfully logged out!</h3>
+    <a href="@Url.Action("Index", "Movies")">Home</a>
+    <a href="@Url.Action("About", "Movies")">About</a>
+    <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login again</a>
 </div>
 
 

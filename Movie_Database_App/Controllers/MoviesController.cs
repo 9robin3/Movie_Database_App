@@ -37,6 +37,11 @@ namespace Movie_Database_App.Controllers
             return View(await _DbContext.Movies.ToListAsync());
         }
 
+        public async Task<IActionResult> About()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> ListReviews(int? id)
         {
             return PartialView(await _DbContext.Reviews.Where(r => r.MovieID == id).ToListAsync());
@@ -94,12 +99,6 @@ namespace Movie_Database_App.Controllers
             return RedirectToAction(nameof(ListWatchList));
         }
 
-        public ActionResult HideAddWatchListBtn()
-        {
-            
-            return View();
-        }
-
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -113,23 +112,29 @@ namespace Movie_Database_App.Controllers
             var movie = await _DbContext.Movies.Include(m => m.ReviewsList)
                 .FirstOrDefaultAsync(m => m.MovieID == id);
 
-            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-            var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
+            //    var itemToAdd = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
 
-            Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
+            //    Movie itemExists = user.WatchList.FirstOrDefault(m => m.MovieID == id);
 
-            /////Behöver kollas, fortfarande krash
-            //if (user.WatchList.Contains(itemExists))
-            if (itemToAdd.MovieID == id)
-            {
-                ViewBag.ShowAddBtn = false;
-                ViewBag.ShowRemoveBtn = true;
-            }
-            else
-            {
-                ViewBag.ShowAddBtn = true;
-                ViewBag.ShowRemoveBtn = false;
-            }
+            //    /////Behöver kollas, fortfarande krash
+            //    //if (user.WatchList.Contains(itemExists))
+            //    if (itemToAdd.MovieID == id)
+            //    {
+            //        ViewBag.ShowAddBtn = false;
+            //        ViewBag.ShowRemoveBtn = true;
+            //    }
+            //    else
+            //    {
+            //        ViewBag.ShowAddBtn = true;
+            //        ViewBag.ShowRemoveBtn = false;
+            //    }
+            //}
+            //ViewBag.ShowAddBtn = true;
+            //ViewBag.ShowRemoveBtn = false;
+
             if (movie == null)
             {
                 return NotFound();
