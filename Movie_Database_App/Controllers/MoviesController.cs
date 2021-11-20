@@ -90,8 +90,9 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> RemoveFromWatchList(int? id)
         {
-            AppUser user = await _DbContext.Users.FirstOrDefaultAsync(u => u.Email == User.FindFirst(ClaimTypes.Email).Value);
-  
+            AppUser user = await _DbContext.Users.Include(u => u.WatchList)
+            .FirstOrDefaultAsync(u => u.Email == GetUserEmail());
+
             //var itemToRemove = await _DbContext.Movies.FirstOrDefaultAsync(m => m.MovieID == id);
 
             var itemToRemove = user.WatchList.FirstOrDefault(w => w.MovieID == id);
