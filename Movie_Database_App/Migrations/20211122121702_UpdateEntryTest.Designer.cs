@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Database_App.Data;
 
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211122121702_UpdateEntryTest")]
+    partial class UpdateEntryTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,57 +271,57 @@ namespace Movie_Database_App.Migrations
                         new
                         {
                             MovieID = 1,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1987),
-                            Description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-                            Genre = "Scifi/Action",
-                            PosterUrl = "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
-                            RunningTime = 160f,
-                            Title = "Inception",
-                            TrailerUrl = "https://www.youtube.com/watch?v=YoHD9XEInc0&ab_channel=MovieclipsClassicTrailers"
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2019),
+                            Description = "desc",
+                            Genre = "Action",
+                            PosterUrl = "https://artiks.se/media/catalog/product/cache/1941e30f13ad4c84c12405c473c5cb3f/1/3/41688/47916/berlin-vintage-poster.jpg",
+                            RunningTime = 200f,
+                            Title = "test1",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         },
                         new
                         {
                             MovieID = 2,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1993),
-                            Description = "'Dune' tells the story of Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, who must travel to the most dangerous planet in the universe to ensure the future of his family and his people. ",
-                            Genre = "Scifi/Adventure",
-                            PosterUrl = "https://d2iltjk184xms5.cloudfront.net/uploads/photo/file/405404/1e9f19f8529d69ceb08691e6fcb22c41-artwork-dune.jpg",
-                            RunningTime = 160f,
-                            Title = "Dune",
-                            TrailerUrl = "https://www.imdb.com/video/vi3986080537?playlistId=tt1160419&ref_=tt_ov_vi"
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2017),
+                            Description = "desc2",
+                            Genre = "Scifi",
+                            PosterUrl = "https://image.posterlounge.se/img/products/630000/620045/620045_poster_l.jpg",
+                            RunningTime = 70f,
+                            Title = "test2",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         },
                         new
                         {
                             MovieID = 3,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1975),
-                            Description = "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
-                            Genre = "Scifi/Adventure",
-                            PosterUrl = "https://static.posters.cz/image/1300/poster/star-wars-classic-i97850.jpg",
-                            RunningTime = 121f,
-                            Title = "Star Wars",
-                            TrailerUrl = "https://www.imdb.com/video/vi1317709849?playlistId=tt0076759&ref_=tt_ov_vi"
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2005),
+                            Description = "desc3",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test3",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         },
                         new
                         {
                             MovieID = 4,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(2011),
-                            Description = "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits with deadly high stakes. A survival game that has a whopping 45.6 billion-won prize at stake.",
-                            Genre = "Action/Drama/Mystery",
-                            PosterUrl = "https://d2iltjk184xms5.cloudfront.net/uploads/photo/file/418598/small_a21d1dd6edee7ca8e955852b1045464b-MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg",
-                            RunningTime = 55f,
-                            Title = "Squid Game",
-                            TrailerUrl = "https://www.imdb.com/video/vi2427699993?playlistId=tt10919420&ref_=tt_ov_vi"
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
+                            Description = "desc4",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test4",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         },
                         new
                         {
                             MovieID = 5,
-                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1999),
-                            Description = "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-                            Genre = "Adventure/Drama",
-                            PosterUrl = "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
-                            RunningTime = 180f,
-                            Title = "The Fellowship of the Ring",
-                            TrailerUrl = "https://www.imdb.com/video/vi2073101337?playlistId=tt0120737&ref_=tt_ov_vi"
+                            DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1995),
+                            Description = "desc4",
+                            Genre = "Horror",
+                            PosterUrl = "https://image.posterlounge.se/images/l/1892194.jpg",
+                            RunningTime = 120f,
+                            Title = "test5",
+                            TrailerUrl = "https://www.youtube.com/watch?v=oZ6iiRrz1SY&ab_channel=SonyPicturesEntertainment"
                         });
                 });
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Database_App.Data;
 
 namespace Movie_Database_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211122124358_UpdateALlEntries")]
+    partial class UpdateALlEntries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -314,11 +316,11 @@ namespace Movie_Database_App.Migrations
                         {
                             MovieID = 5,
                             DatePublished = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1999),
-                            Description = "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+                            Description = "desc4",
                             Genre = "Adventure/Drama",
                             PosterUrl = "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
                             RunningTime = 180f,
-                            Title = "The Fellowship of the Ring",
+                            Title = "The Lord of the Rings: Fellowship of the Ring",
                             TrailerUrl = "https://www.imdb.com/video/vi2073101337?playlistId=tt0120737&ref_=tt_ov_vi"
                         });
                 });

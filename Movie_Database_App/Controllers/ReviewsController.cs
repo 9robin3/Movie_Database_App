@@ -30,7 +30,7 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> Index()
         {
             //GetLoggedInUser();
-            return View(await _DbContext.Reviews.ToListAsync());
+            return View(await _DbContext.Reviews.Include(r => r.MovieID).ToListAsync());
         }
         public async Task<IActionResult> ListReviews(int id)
         {
@@ -64,6 +64,8 @@ namespace Movie_Database_App.Controllers
             rev.UserName = GetUserEmail();
             rev.MovieID = id;
             return View(rev);
+            //return new RedirectResult(RedirectToUrl);
+            //return RedirectToAction("Details", "Movies", new { id = id });
         }
 
         // POST: Reviews/Create
@@ -71,7 +73,7 @@ namespace Movie_Database_App.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewID,MovieID,MovieObj,UserName,ReviewTitle,Rating,Comment,DatePosted")] Review review)
+        public async Task<IActionResult> Create([Bind("ReviewID,MovieID,MovieObj,UserName,ReviewTitle,Rating,Comment,DatePosted")] Review review, int id)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +81,9 @@ namespace Movie_Database_App.Controllers
                 //Review rev = new Review(id);
                 _DbContext.Add(review);
                 await _DbContext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                //return Redirect(Request.UrlReferrer.PathAndQuery);
+                return RedirectToAction("Details", "Movies", new { id = id });
             }
             return View(review);
         }
@@ -88,6 +92,7 @@ namespace Movie_Database_App.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
+     
             if (id == null)
             {
                 return NotFound();
@@ -105,6 +110,7 @@ namespace Movie_Database_App.Controllers
             }
             else
             {
+                //Test, should redirect to movies/details/X
                 return RedirectToAction(nameof(Index));
             }
             //return RedirectToAction(nameof(Index)); 
@@ -142,7 +148,9 @@ namespace Movie_Database_App.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieID).FirstOrDefaultAsync();
+                return RedirectToAction("Details", "Movies", new { id = rev.MovieID });
+                //return RedirectToAction(nameof(Index));
             }
             return View(review);
         }
