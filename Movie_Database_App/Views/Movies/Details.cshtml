@@ -10,7 +10,7 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Title)</h4>
-    <img src="@Html.DisplayFor(model => model.PosterUrl)" width="250" height="300" />
+    <img src="@Html.DisplayFor(model => model.PosterUrl)" width="200" height="300" />
     <hr />
     <dl class="row">
         <!--<dt class="col-sm-2">
@@ -58,6 +58,7 @@
             @Html.DisplayFor(model => model.DatePublished)
         </dd>
     </dl>
+    <hr />
     <dt>
         @if (ViewBag.ShowAddBtn ?? true)
         {
@@ -74,7 +75,7 @@
 </div>
 
 
-<hr />
+<br />
 
 
 <div>

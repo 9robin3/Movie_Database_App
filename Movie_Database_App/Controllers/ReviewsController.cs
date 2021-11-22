@@ -30,7 +30,7 @@ namespace Movie_Database_App.Controllers
         public async Task<IActionResult> Index()
         {
             //GetLoggedInUser();
-            return View(await _DbContext.Reviews.Include(r => r.MovieID).ToListAsync());
+            return View(await _DbContext.Reviews.ToListAsync());
         }
         public async Task<IActionResult> ListReviews(int id)
         {
@@ -110,8 +110,8 @@ namespace Movie_Database_App.Controllers
             }
             else
             {
-                //Test, should redirect to movies/details/X
-                return RedirectToAction(nameof(Index));
+                var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieObj).FirstOrDefaultAsync();
+                return RedirectToAction("Details", "Movies", new { id = rev.MovieID });
             }
             //return RedirectToAction(nameof(Index)); 
        
@@ -148,7 +148,7 @@ namespace Movie_Database_App.Controllers
                         throw;
                     }
                 }
-                var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieID).FirstOrDefaultAsync();
+                var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieObj).FirstOrDefaultAsync();
                 return RedirectToAction("Details", "Movies", new { id = rev.MovieID });
                 //return RedirectToAction(nameof(Index));
             }
@@ -180,7 +180,9 @@ namespace Movie_Database_App.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(Index));
+                var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieObj).FirstOrDefaultAsync();
+                return RedirectToAction("Details", "Movies", new { id = rev.MovieID });
+                //return RedirectToAction(nameof(Index));
             }
 
         }
@@ -190,10 +192,13 @@ namespace Movie_Database_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var review = await _DbContext.Reviews.FindAsync(id);
-            _DbContext.Reviews.Remove(review);
+            //var review = await _DbContext.Reviews.FindAsync(id);
+            var rev = await _DbContext.Reviews.Where(r => r.ReviewID == id).Include(r => r.MovieObj).FirstOrDefaultAsync();
+            _DbContext.Reviews.Remove(rev);
             await _DbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            
+            return RedirectToAction("Details", "Movies", new { id = rev.MovieID });
+            //return RedirectToAction(nameof(Index));
         }
 
         private bool ReviewExists(int id)
