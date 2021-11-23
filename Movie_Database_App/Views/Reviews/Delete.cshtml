@@ -41,6 +41,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="ReviewID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        @*<a asp-action="Index">Back to List</a>*@
+        <a href="@Url.Action("Details", "Movies", new { id = @Model.MovieID })" class="btn btn-warning" role="button">Cancel</a>
     </form>
 </div>

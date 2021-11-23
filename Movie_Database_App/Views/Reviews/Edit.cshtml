@@ -63,6 +63,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Index">Back to List</a>*@
+    <a href="@Url.Action("Details", "Movies", new { id = @Model.MovieID })" class="btn btn-warning" role="button">Cancel</a>
 </div>
 
