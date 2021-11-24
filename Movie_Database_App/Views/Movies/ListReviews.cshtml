@@ -37,32 +37,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePosted)
-            </td>
-            <td>
-                <a asp-controller="Reviews" asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
-                @*<a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>*@
-                <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePosted)
+                </td>
+                <td>
+                    <a asp-controller="Reviews" asp-action="Edit" asp-route-id="@item.ReviewID">Edit</a>
+                    @*<a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>*@
+                    <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@item.ReviewID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
